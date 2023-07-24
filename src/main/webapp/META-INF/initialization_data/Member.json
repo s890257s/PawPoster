@@ -1,0 +1,231 @@
+[
+	{
+		"mID":"1",
+		"email": "Lee@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "管理員",
+		"mName": "Lee",
+		"mAge": "26",
+		"address": "台北市",
+		"mPhoto": "user-type-B-01",
+		"pets": [
+			{
+				"type": "dog",
+				"pName": "Cookie",
+				"pAge": "3"
+			},
+			{
+				"type": "dog",
+				"pName": "Max",
+				"pAge": "2"
+			},
+			{
+				"type": "cat",
+				"pName": "Happy",
+				"pAge": "4"
+			}
+		]
+	},
+	{
+		"mID":"2",
+		"email": "Amy@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Amy",
+		"mAge": "32",
+		"address": "台北市",
+		"mPhoto": "user-type-B-02",
+		"pets": [
+			{
+				"type": "rabbit",
+				"pName": "芒果",
+				"pAge": "3"
+			},
+			{
+				"type": "rat",
+				"pName": "樂樂",
+				"pAge": "3"
+			}
+		]
+	},
+	{
+		"mID":"3",
+		"email": "Nick@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Nick",
+		"mAge": "27",
+		"address": "台南市",
+		"mPhoto": "user-type-B-03",
+		"pets": [
+			{
+				"type": "dog",
+				"pName": "天天",
+				"pAge": "2"
+			},
+			{
+				"type": "dog",
+				"pName": "包子",
+				"pAge": "2"
+			},
+			{
+				"type": "cat",
+				"pName": "布丁",
+				"pAge": "5"
+			}
+		]
+	},
+	{
+		"mID":"4",
+		"email": "Elisa@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Elisa",
+		"mAge": "25",
+		"address": "高雄市",
+		"mPhoto": "user-type-B-04",
+		"pets": [
+			{
+				"type": "cat",
+				"pName": "皮皮",
+				"pAge": "4"
+			},
+			{
+				"type": "cat",
+				"pName": "胖胖",
+				"pAge": "4"
+			}
+		]
+	},
+	{
+		"mID":"5",
+		"email": "Bob@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Bob",
+		"mAge": "55",
+		"address": "桃園市",
+		"mPhoto": "user-type-B-05",
+		"pets": [
+			{
+				"type": "rabbit",
+				"pName": "咩咩",
+				"pAge": "5"
+			},
+			{
+				"type": "dog",
+				"pName": "錢錢",
+				"pAge": "3"
+			},
+			{
+				"type": "rabbit",
+				"pName": "控肉",
+				"pAge": "3"
+			}
+		]
+	},
+	{
+		"mID":"6",
+		"email": "John@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "John",
+		"mAge": "21",
+		"address": "新北市",
+		"mPhoto": "user-type-B-06",
+		"pets": [
+			{
+				"type": "rat",
+				"pName": "糖糖",
+				"pAge": "2"
+			}
+		]
+	},
+	{
+		"mID":"7",
+		"email": "Jenny@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Jenny",
+		"mAge": "26",
+		"address": "台北市",
+		"mPhoto": "user-type-B-07",
+		"pets": [
+			{
+				"type": "cat",
+				"pName": "Oreo",
+				"pAge": "1"
+			},
+			{
+				"type": "dog",
+				"pName": "黑輪",
+				"pAge": "1"
+			}
+		]
+	},
+	{
+		"mID":"8",
+		"email": "Lydia@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Lydia",
+		"mAge": "22",
+		"address": "台南市",
+		"mPhoto": "user-type-B-08",
+		"pets": [
+			{
+				"type": "dog",
+				"pName": "米粒",
+				"pAge": "3"
+			},
+			{
+				"type": "cat",
+				"pName": "可樂",
+				"pAge": "4"
+			}
+		]
+	},
+	{
+		"mID":"9",
+		"email": "Leo@gmail.com",
+		"password": "1234",
+		"enabled": "true",
+		"level": "會員",
+		"mName": "Leo",
+		"mAge": "35",
+		"address": "台北市",
+		"mPhoto": "user-type-B-09",
+		"pets": [
+			{
+				"type": "cat",
+				"pName": "麻糬",
+				"pAge": "5"
+			},
+			{
+				"type": "dog",
+				"pName": "阿毛",
+				"pAge": "2"
+			}
+		]
+	},
+	{
+		"mID":"10",
+		"email": "Peggie@gmail.com",
+		"password": "1234",
+		"enabled": "false",
+		"level": "會員",
+		"mName": "Peggie",
+		"mAge": "28",
+		"address": "台北市",
+		"mPhoto": "user-type-B-10",
+		"pets": []
+	}
+]
