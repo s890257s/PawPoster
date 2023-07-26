@@ -16,6 +16,7 @@ public class ToProfile extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		request.getRequestDispatcher(PathConverter.convertToWebInfPathForFrontend(request.getServletPath()))
 				.forward(request, response);
 	}

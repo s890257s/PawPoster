@@ -1,10 +1,10 @@
-package tw.com.eeit.petforum.controller.page.frontend;
+package tw.com.eeit.petforum.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,29 +13,34 @@ import javax.servlet.http.HttpServletResponse;
 import tw.com.eeit.petforum.model.bean.Pet;
 import tw.com.eeit.petforum.model.dao.PetDAO;
 import tw.com.eeit.petforum.util.ConnectionFactory;
-import tw.com.eeit.petforum.util.PathConverter;
 
-@WebServlet("/pets")
-public class ToPets extends HttpServlet {
+@WebServlet("/GetPetPhoto.do")
+public class GetPetPhoto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String pID = request.getParameter("pID");
+		if (pID == null) {
+			return;
+		}
+
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			PetDAO pDAO = new PetDAO(conn);
 
-			List<Pet> pList = pDAO.findAllPetWithMember();
+			Pet p = pDAO.findPetByID(Integer.valueOf(pID));
 
-			request.setAttribute("pList", pList);
+			response.setContentType("image/jpeg");
+			ServletOutputStream out = response.getOutputStream();
 
+			out.write(p.getpPhoto());
+
+			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		request.getRequestDispatcher(PathConverter.convertToWebInfPathForFrontend(request.getServletPath()))
-				.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
