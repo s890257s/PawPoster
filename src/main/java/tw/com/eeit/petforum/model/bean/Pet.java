@@ -9,6 +9,14 @@ public class Pet {
 	private byte[] pPhoto;
 	private Member member;
 
+	public Pet() {
+	}
+
+	public Pet(int pID) {
+		super();
+		this.pID = pID;
+	}
+
 	public int getpID() {
 		return pID;
 	}

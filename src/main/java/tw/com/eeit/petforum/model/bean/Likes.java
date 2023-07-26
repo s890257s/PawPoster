@@ -41,4 +41,9 @@ public class Likes {
 		this.pet = pet;
 	}
 
+	@Override
+	public String toString() {
+		return "Likes [lID=" + lID + ", time=" + time + ", member=" + member.getmID() + ", pet=" + pet.getpID() + "]";
+	}
+
 }

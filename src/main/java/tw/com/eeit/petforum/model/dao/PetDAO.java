@@ -34,7 +34,7 @@ public class PetDAO {
 	 * @return Pet 寵物的資料載體，裡面有寵物的所有資料； 若ID不存在則回傳null。
 	 */
 	public Pet findPetByID(int petID) throws SQLException {
-		String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] WHERE [pID] = ?";
+		final String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] WHERE [pID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, petID);
 		ResultSet rs = preState.executeQuery();
@@ -61,7 +61,7 @@ public class PetDAO {
 	 * @return List<Pet> 所有寵物的集合，包含主人的資訊。
 	 */
 	public List<Pet> findAllPetWithMember() throws SQLException {
-		String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] AS [p]" + " LEFT JOIN [PetForum].[dbo].[Member] AS [m]"
+		final String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] AS [p]" + " LEFT JOIN [PetForum].[dbo].[Member] AS [m]"
 				+ " ON [p].[mID] = [m].[mID]";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);

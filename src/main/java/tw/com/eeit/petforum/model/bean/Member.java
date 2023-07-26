@@ -18,6 +18,10 @@ public class Member {
 	public Member() {
 	}
 
+	public Member(int mID) {
+		this.mID = mID;
+	}
+
 	public int getmID() {
 		return mID;
 	}

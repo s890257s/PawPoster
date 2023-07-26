@@ -28,14 +28,14 @@ public class MemberDAO {
 	}
 
 	/**
-	 * 根據使用者的ID取得指定使用者的所有資料。
+	 * 根據會員的ID取得指定會員的所有資料。
 	 * <p>
 	 * 
-	 * @param MemberID 使用者的ID。
-	 * @return Member 使用者的資料載體，裡面有使用者的所有資料； 若ID不存在則回傳null。
+	 * @param MemberID 會員的ID。
+	 * @return Member 會員的資料載體，裡面有會員的所有資料； 若ID不存在則回傳null。
 	 */
 	public Member findMemberByID(int memberID) throws SQLException {
-		String SQL = "SELECT * FROM [PetForum].[dbo].[Member] WHERE mID = ?";
+		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] WHERE mID = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, memberID);
 		ResultSet rs = preState.executeQuery();
@@ -61,14 +61,14 @@ public class MemberDAO {
 	}
 
 	/**
-	 * 根據使用者的ID取得指定使用者的所有資料，包含所有寵物資訊。
+	 * 根據會員的ID取得指定會員的所有資料，包含所有寵物資訊。
 	 * <p>
 	 * 
-	 * @param MemberID 使用者的ID。
-	 * @return Member 使用者的資料載體，裡面有使用者的所有資料(含寵物資訊)； 若ID不存在則回傳null。
+	 * @param MemberID 會員的ID。
+	 * @return Member 會員的資料載體，裡面有會員的所有資料(含寵物資訊)； 若ID不存在則回傳null。
 	 */
 	public Member findMemberWithPetByID(int memberID) throws SQLException {
-		String SQL = "SELECT * FROM [PetForum].[dbo].[Member] AS [m]" + " LEFT JOIN [PetForum].[dbo].[Pet] AS [p]"
+		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] AS [m]" + " LEFT JOIN [PetForum].[dbo].[Pet] AS [p]"
 				+ " ON [m].[mID] = [p].[mID]" + " WHERE [m].[mID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, memberID);
@@ -112,10 +112,10 @@ public class MemberDAO {
 	 * 此方法邏輯稍微複雜，不一定要看懂。
 	 * <p>
 	 * 
-	 * @return List<Member> 所有使用者的集合，包含寵物資訊。
+	 * @return List<Member> 所有會員的集合，包含寵物資訊。
 	 */
 	public List<Member> findAllMemberWithPet() throws SQLException {
-		String SQL = "SELECT * FROM [PetForum].[dbo].[Member] AS [m]" + " LEFT JOIN [PetForum].[dbo].[Pet] AS [p]"
+		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] AS [m]" + " LEFT JOIN [PetForum].[dbo].[Pet] AS [p]"
 				+ " ON [m].[mID] = [p].[mID]";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 
@@ -175,4 +175,60 @@ public class MemberDAO {
 		preState.close();
 		return mList;
 	}
+
+	/**
+	 * 根據email與password尋找會員，若尋找到會回傳Member物件，若沒找到則回傳null。
+	 * <p>
+	 * DAO之中不應該撰寫「邏輯」，僅該單純撰寫「CRUD」，<br>
+	 * 故不會出現如「login」、「clearShoppingCart」等方法。<br>
+	 * (應該以findByAccountAndPassword、removeAllByMemberID取代)
+	 * <p>
+	 * 【 COLLATE Latin1_General_CS_AS 】 語法可指定MSSQL的欄位定序，改變定序能使MSSQL偵測大小寫。<br>
+	 * 【 SQL_Latin1_General_CP1_CI_AS 】 => (預設值) 不區分大小寫、區分重音、不區分假名、不區分寬度 <br>
+	 * 【 Latin1_General_CS_AS 】 => 區分大小寫、區分重音、不區分假名、不區分寬度<br>
+	 * 其中CS表示區分大小寫，AS表示區分腔調("a" 不等於 "ấ")；CI表示不區分大小寫，AI表示不區分腔調。<br>
+	 * 詳情可搜尋「SQL Server 定序和 Unicode 支援」。
+	 * <p>
+	 * 
+	 * @return Member 會員的資料載體，裡面有會員的所有資料
+	 */
+	public Member findMemberByEmailAndPassword(String email, String password) throws SQLException {
+		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] WHERE [email] COLLATE Latin1_General_CS_AS = ? AND [password] COLLATE Latin1_General_CS_AS = ?";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setString(1, email);
+		preState.setString(2, password);
+
+		ResultSet rs = preState.executeQuery();
+
+		if (rs.next()) {
+			Member m = new Member();
+			m.setmID(rs.getInt("mID"));
+			m.setEmail(rs.getString("email"));
+			m.setPassword(rs.getString("password"));
+			m.setEnabled(rs.getBoolean("enabled"));
+			m.setLevel(rs.getString("level"));
+			m.setmName(rs.getString("mName"));
+			m.setmAge(rs.getInt("mAge"));
+			m.setAddress(rs.getString("address"));
+			m.setmPhoto(rs.getString("mPhoto"));
+
+			return m;
+		}
+
+		rs.close();
+		preState.close();
+		return null;
+
+	}
+
+	public void updateEnabledByID(int memberID, boolean status) throws SQLException {
+		final String SQL = "UPDATE [PetForum].[dbo].[Member] SET [enabled] = ? WHERE [mID] = ?";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setBoolean(1, status);
+		preState.setInt(2, memberID);
+
+		preState.executeUpdate();
+		preState.close();
+	}
+
 }
