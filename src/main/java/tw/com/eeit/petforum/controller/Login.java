@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,7 @@ public class Login extends HttpServlet {
 			}
 
 			request.getSession().setAttribute("loggedInMember", m);
+			response.addCookie(new Cookie("loggedIn", "whatever"));
 			response.sendRedirect("index");
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -14,13 +14,14 @@
 				<li><a href="#" class="nav-link px-2 text-white fs-3">${webName}後台</a></li>
 			</ul>
 
-
+ 
 			<div class="text-end">
 
 				<a href="${root}/index" style="text-decoration: none;">
 					<button type="button" class="btn btn-warning">回前臺</button>
+				</a> <a href="${root}/Logout.do" style="text-decoration: none;">
+					<button type="button" class="btn btn-danger">登出</button>
 				</a>
-				<button type="button" class="btn btn-danger">登出</button>
 			</div>
 		</div>
 	</div>

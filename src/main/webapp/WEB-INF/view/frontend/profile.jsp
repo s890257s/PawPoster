@@ -85,7 +85,7 @@
 								<div class="card mb-4 mb-md-0">
 									<div class="card-body text-center position-relative">
 										<i
-											class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide"></i>
+											class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide" style="color: #ffffff"></i>
 										<img src="${p.pPhotoBase64}" class="w-100 petPhoto" />
 										<p class="card-text fs-3">${p.pName}</p>
 									</div>

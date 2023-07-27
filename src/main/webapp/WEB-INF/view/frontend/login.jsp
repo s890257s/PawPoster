@@ -69,7 +69,13 @@
 	cancelBTN.addEventListener("click",function(e){
 		e.preventDefault();
 		window.location.href="${root}/";
-	})
+	}) 
+	
+	
+    // 如果是通過 "返回上一頁" 的方式進入此頁面，且cookie中有登入的flag，則使用 location.replace() 將頁面導回首頁。
+    if (performance.navigation.type == 2 && document.cookie) {
+        location.replace("index");
+    }
 	
 </script>
 

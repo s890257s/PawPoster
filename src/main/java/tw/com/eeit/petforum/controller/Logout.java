@@ -3,6 +3,7 @@ package tw.com.eeit.petforum.controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +16,10 @@ public class Logout extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.getSession().invalidate();
-
-		response.sendRedirect(request.getHeader("Referer"));
+		Cookie c = new Cookie("loggedIn", "whatever");
+		c.setMaxAge(0);
+		response.addCookie(c);
+		response.sendRedirect("index");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
