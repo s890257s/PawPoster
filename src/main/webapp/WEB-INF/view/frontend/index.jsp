@@ -54,6 +54,10 @@
 					<li><a href="/PetForum/pets" class="nav-link px-2 link-dark">萌寵們</a></li>
 					<li><a href="/PetForum/profile"
 						class="nav-link px-2 link-dark">個人資訊</a></li>
+					<li><a href="/PetForum/add_pet"
+						class="nav-link px-2 link-dark">新增寵物</a></li>
+					<li><a href="/PetForum/dashboard"
+						class="nav-link px-2 link-dark">後臺管理</a></li>
 				</ul>
 				<div class="dropdown text-end">
 					<a href="/PetForum/login">
