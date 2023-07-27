@@ -56,7 +56,7 @@
 						class="nav-link px-2 link-dark">個人資訊</a></li>
 					<li><a href="/PetForum/add_pet"
 						class="nav-link px-2 link-dark">新增寵物</a></li>
-					<li><a href="/PetForum/dashboard"
+					<li><a href="/PetForum/backend/index"
 						class="nav-link px-2 link-dark">後臺管理</a></li>
 				</ul>
 				<div class="dropdown text-end">
