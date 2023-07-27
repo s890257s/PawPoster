@@ -14,7 +14,7 @@
 					<li><a href="${root}/add_pet" class="nav-link px-2 link-dark">新增寵物</a></li>
 
 					<c:if test="${loggedInMember.level == '管理員' }">
-						<li><a href="${root}/dashboard"
+						<li><a href="${root}/backend/index"
 							class="nav-link px-2 link-dark">後臺管理</a></li>
 					</c:if>
 				</c:if>

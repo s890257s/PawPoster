@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.petforum.util.PathConverter;
 
-@WebServlet("/show_pets")
+@WebServlet("/backend/show_pets")
 public class ToShowPets extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

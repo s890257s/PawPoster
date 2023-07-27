@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.petforum.util.PathConverter;
 
-@WebServlet("/dashboard")
-public class ToDashboard extends HttpServlet {
+@WebServlet("/backend/index")
+public class ToInedx extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

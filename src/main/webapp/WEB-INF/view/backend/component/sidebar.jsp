@@ -12,12 +12,12 @@
             </h6>
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link"  href="${root}/show_members">
+                <a class="nav-link"  href="${root}/backend/show_members">
                   查詢所有會員
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="${root}/create_member">
+                <a class="nav-link" href="${root}/backend/create_member">
                   新增會員
                 </a>
               </li>
@@ -30,7 +30,7 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="${root}/show_pets">
+                <a class="nav-link" href="${root}/backend/show_pets">
                   查詢所有寵物
                 </a>
               </li>
