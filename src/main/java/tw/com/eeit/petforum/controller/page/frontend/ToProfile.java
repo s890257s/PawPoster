@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import tw.com.eeit.petforum.model.bean.Member;
 import tw.com.eeit.petforum.model.dao.MemberDAO;
@@ -24,6 +23,11 @@ public class ToProfile extends HttpServlet {
 			throws ServletException, IOException {
 		String mID = request.getParameter("mID");
 		Member m = (Member) request.getSession().getAttribute("loggedInMember");
+
+		if (mID == null && m == null) {
+			response.sendRedirect("index");
+			return;
+		}
 
 		int memberID = (mID == null) ? m.getmID() : Integer.valueOf(mID);
 

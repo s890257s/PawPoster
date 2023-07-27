@@ -11,6 +11,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,7 +29,7 @@ public class FrontendFilter extends HttpFilter implements Filter {
 
 		String requestTarget = httpRequest.getServletPath();
 
-		List<String> protectedPaths = Arrays.asList(new String[] { "/profile", "/add_pet" });
+		List<String> protectedPaths = Arrays.asList(new String[] { "/add_pet" });
 		List<String> guestOnlyPaths = Arrays.asList(new String[] { "/login" });
 
 		if (protectedPaths.contains(requestTarget) && m == null) {

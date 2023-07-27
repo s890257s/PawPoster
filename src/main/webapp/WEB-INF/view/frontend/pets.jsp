@@ -39,13 +39,14 @@
 								<img src="${root}/GetPetPhoto.do?pID=${p.pID}" class="w-100" />
 								<p class="card-text fs-3">${p.pName}</p>
 								<div class="d-flex justify-content-between align-items-center">
-									<button type="button"
-										class="btn btn-sm btn-outline-secondary m-2">
-										<i class="fa-regular fa-thumbs-up"></i>
-									</button>
-									<div class="m-3">
-										<a href="${root}/profile/${p.member.mID}">${p.member.mName }</a>
-									</div>
+										<button type="button"
+											class="btn btn-sm btn-outline-secondary m-2">
+											<i class="fa-regular fa-thumbs-up"></i>
+										</button>
+
+										<div class="m-3">
+											<a href="${root}/profile?mID=${p.member.mID}">${p.member.mName }</a>
+										</div>
 								</div>
 							</div>
 						</div>
