@@ -11,16 +11,22 @@ import javax.sql.DataSource;
 public class ConnectionFactory {
 
 	/**
-	 * 使用JNDI尋找DataSource，取得連線物件後回傳
+	 * 使用JNDI尋找DataSource，取得連線物件後回傳。<br>
+	 * 若程式出錯則回傳null。
 	 * 
-	 * @return Connection 連線物件
+	 * @return Connection 連線物件；null 出錯時
 	 */
-	public static Connection getConnection() throws Exception {
-		InitialContext context = new InitialContext();
-		DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/MSSQL");
-		Connection conn = ds.getConnection();
+	public static Connection getConnection() {
+		try {
+			InitialContext context = new InitialContext();
+			DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/MSSQL");
+			Connection conn = ds.getConnection();
+			return conn;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 
-		return conn;
 	}
 
 }

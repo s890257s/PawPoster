@@ -8,6 +8,7 @@ public class Pet {
 	private int pAge;
 	private byte[] pPhoto;
 	private Member member;
+	private String pPhotoBase64;
 
 	public Pet() {
 	}
@@ -63,6 +64,14 @@ public class Pet {
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+	public String getpPhotoBase64() {
+		return pPhotoBase64;
+	}
+
+	public void setpPhotoBase64(String pPhotoBase64) {
+		this.pPhotoBase64 = pPhotoBase64;
 	}
 
 	@Override

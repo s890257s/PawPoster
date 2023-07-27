@@ -20,9 +20,12 @@ public class GetPetPhoto extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("image/jpeg");
+		ServletOutputStream out = response.getOutputStream();
 
 		String pID = request.getParameter("pID");
 		if (pID == null) {
+			request.getRequestDispatcher("assets/no_image.png").forward(request, response);
 			return;
 		}
 
@@ -32,8 +35,10 @@ public class GetPetPhoto extends HttpServlet {
 
 			Pet p = pDAO.findPetByID(Integer.valueOf(pID));
 
-			response.setContentType("image/jpeg");
-			ServletOutputStream out = response.getOutputStream();
+			if (p == null) {
+				request.getRequestDispatcher("assets/no_image.png").forward(request, response);
+				return;
+			}
 
 			out.write(p.getpPhoto());
 

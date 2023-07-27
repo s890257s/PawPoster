@@ -44,7 +44,7 @@
 										<i class="fa-regular fa-thumbs-up"></i>
 									</button>
 									<div class="m-3">
-										<a href="#">${p.member.mName }</a>
+										<a href="${root}/profile/${p.member.mID}">${p.member.mName }</a>
 									</div>
 								</div>
 							</div>
