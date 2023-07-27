@@ -11,11 +11,11 @@
 <body class="vh-100">
 
 	<main class="form-signin m-5 text-center ">
-		<form action="${root}/login" method="post">
+		<form action="${root}/Login.do" method="post">
 			<h1 class="h3 mb-3 fw-normal">會員登入</h1>
 			<div class="form-floating">
 				<input type="text" class="form-control" placeholder="#"
-					id="accountInput" name="account" required> <label>帳號</label>
+					id="emailInput" name="email" required> <label>信箱</label>
 			</div>
 			<div class="form-floating">
 				<input type="text" class="form-control" id="passwordInput"
@@ -50,7 +50,7 @@
 
 <script type="text/javascript">
 	const fastLoginBTNs = document.querySelectorAll(".fastLogin");
-	const accountInput = document.querySelector("#accountInput");
+	const emailInput = document.querySelector("#emailInput");
 	const passwordInput = document.querySelector("#passwordInput");
 	const cancelBTN = document.querySelector("#cancelBTN");
 
@@ -58,9 +58,9 @@
 	fastLoginBTNs.forEach(button=>{
 		button.addEventListener("click",function(){
 			if(this.innerHTML=="Lee(管理員)"){
-				accountInput.value="Lee@gmail.com";
+				emailInput.value="Lee@gmail.com";
 			}else{
-				accountInput.value=this.innerHTML+"@gmail.com";
+				emailInput.value=this.innerHTML+"@gmail.com";
 			}
 			passwordInput.value=1234;
 		})

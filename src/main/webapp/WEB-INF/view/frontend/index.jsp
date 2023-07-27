@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>${webName}</title>
 
-<jsp:include page="${view}/frontend/component/header.jsp" />
+<jsp:include page="${view}/common_dependencies.jsp" />
 
 <style type="text/css">
 .backgroundImg {
