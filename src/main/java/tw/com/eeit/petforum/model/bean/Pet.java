@@ -8,8 +8,24 @@ public class Pet {
 	private int pAge;
 	private byte[] pPhoto;
 	private Member member;
+	private String pPhotoBase64;
 
 	public Pet() {
+	}
+
+	public Pet(String pName, String type, int pAge, byte[] pPhoto) {
+		this.pName = pName;
+		this.type = type;
+		this.pAge = pAge;
+		this.pPhoto = pPhoto;
+	}
+
+	public Pet(String pName, String type, int pAge, byte[] pPhoto, Member member) {
+		this.pName = pName;
+		this.type = type;
+		this.pAge = pAge;
+		this.pPhoto = pPhoto;
+		this.member = member;
 	}
 
 	public Pet(int pID) {
@@ -63,6 +79,14 @@ public class Pet {
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+	public String getpPhotoBase64() {
+		return pPhotoBase64;
+	}
+
+	public void setpPhotoBase64(String pPhotoBase64) {
+		this.pPhotoBase64 = pPhotoBase64;
 	}
 
 	@Override

@@ -30,6 +30,7 @@ public class PetDAO {
 	 * 根據寵物的ID取得指定寵物的所有資料。
 	 * <p>
 	 * 
+	 * @throws SQLException
 	 * @param petID 寵物的ID。
 	 * @return Pet 寵物的資料載體，裡面有寵物的所有資料； 若ID不存在則回傳null。
 	 */
@@ -58,6 +59,7 @@ public class PetDAO {
 	 * 在一次查詢中，取得所有Pet，與其擁有者Member的資訊。 <br>
 	 * <p>
 	 * 
+	 * @throws SQLException
 	 * @return List<Pet> 所有寵物的集合，包含主人的資訊。
 	 */
 	public List<Pet> findAllPetWithMember() throws SQLException {
@@ -98,5 +100,99 @@ public class PetDAO {
 
 		return pList;
 
+	}
+
+	/**
+	 * 新增寵物的方法，有兩種寫法，撰寫時需注意寫法的命名差異。<br>
+	 * 此方法從傳入的Pet物件中取得Member物件，再取得memberID。
+	 * 
+	 * @throws SQLException
+	 */
+	public void insertPet(Pet p) throws SQLException {
+		final String SQL = "INSERT INTO [PetForum].[dbo].[Pet]([pName], [type], [pAge], [pPhoto], [mID]) VALUES(?, ?, ?, ?, ?)";
+
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setString(1, p.getpName());
+		preState.setString(2, p.getType());
+		preState.setInt(3, p.getpAge());
+		preState.setBytes(4, p.getpPhoto());
+		preState.setInt(5, p.getMember().getmID());
+
+		preState.execute();
+		preState.close();
+	}
+
+	/**
+	 * 新增寵物的方法，有兩種寫法，撰寫時需注意寫法的命名差異。<br>
+	 * 此方法呼叫時需傳入memberID與Pet物件。
+	 * 
+	 * @throws SQLException
+	 */
+	public void insertPetByMemberID(int memberID, Pet p) throws SQLException {
+		final String SQL = "INSERT INTO [PetForum].[dbo].[Pet]([pName], [type], [pAge], [pPhoto], [mID]) VALUES(?, ?, ?, ?, ?)";
+
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setString(1, p.getpName());
+		preState.setString(2, p.getType());
+		preState.setInt(3, p.getpAge());
+		preState.setBytes(4, p.getpPhoto());
+		preState.setInt(5, memberID);
+
+		preState.execute();
+		preState.close();
+	}
+
+	/**
+	 * 根據petID刪除指定的寵物。
+	 * 
+	 * @throws SQLException
+	 */
+	public void deletePetByID(int petID) throws SQLException {
+		final String SQL = "DELETE FROM [PetForum].[dbo].[Pet] WHERE [pID] = ?";
+
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setInt(1, petID);
+		preState.execute();
+		preState.close();
+	}
+
+	/**
+	 * 命名與新增(insert)的風格類似。<br>
+	 * 此方法無法修改petID，因更新的值會被封裝在Pet物件中，<br>
+	 * 更新的ID == 目標ID，即會找到不存在的ID。(但主鍵基本上不會更新)
+	 * 
+	 * @throws SQLException
+	 */
+	public void updatePet(Pet p) throws SQLException {
+		final String SQL = "UPDATE [PetForum].[dbo].[Pet] SET [pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setString(1, p.getpName());
+		preState.setString(2, p.getType());
+		preState.setInt(3, p.getpAge());
+		preState.setBytes(4, p.getpPhoto());
+		preState.setInt(5, p.getpID());
+
+		preState.executeUpdate();
+		preState.close();
+	}
+
+	/**
+	 * 命名與新增(insert)的風格類似。<br>
+	 * 此方法可以修改petID，但要注意通常不會更新流水號ID(甚至不應該暴露給使用者)。
+	 * 
+	 * @throws SQLException
+	 */
+	public void updatePetByID(int pID, Pet p) throws SQLException {
+		final String SQL = "UPDATE [PetForum].[dbo].[Pet] SET [pID] = ?,[pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setInt(1, p.getpID());
+		preState.setString(2, p.getpName());
+		preState.setString(3, p.getType());
+		preState.setInt(4, p.getpAge());
+		preState.setBytes(5, p.getpPhoto());
+		preState.setInt(6, pID);
+
+		preState.executeUpdate();
+		preState.close();
 	}
 }
