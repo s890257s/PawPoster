@@ -79,20 +79,19 @@
 				</div>
 				<div class="col-lg-8">
 					<div class="row">
-
 						<c:forEach items="${m.pets}" var="p">
 							<div class="col-md-6 mb-4">
 								<div class="card mb-4 mb-md-0">
 									<div class="card-body text-center position-relative">
-										<i
-											class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide" style="color: #ffffff"></i>
-										<img src="${p.pPhotoBase64}" class="w-100 petPhoto" />
+										<i pID="${p.pID}"
+											class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide"
+											style="color: #ffffff"></i> <img
+											src="${p.pPhotoBase64}" class="w-100 petPhoto" />
 										<p class="card-text fs-3">${p.pName}</p>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
-
 					</div>
 				</div>
 			</div>
@@ -114,7 +113,6 @@
         if (e.relatedTarget.classList.contains("xmark")) {
           return;
         }
-        this.previousElementSibling.classList.add("xmark-hide");
       });
     });
 
@@ -123,8 +121,17 @@
         if (confirm("確定要刪除此寵物嗎?") == false) {
           return;
         }
+        fetch("${root}/DeletePet.do?pID=" + this.getAttribute("pID"))
+		.then((rs) => rs.text())
+		.then((message) => {
+			if (message == "success") {
+				this.parentElement.parentElement.parentElement.remove();
+            }
 
-        this.parentElement.parentElement.parentElement.remove();
+            if (message == "fail") {
+              alert("刪除失敗");
+            }
+          });
       });
     });
   </script>

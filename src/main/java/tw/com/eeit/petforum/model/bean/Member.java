@@ -1,6 +1,7 @@
 package tw.com.eeit.petforum.model.bean;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Member {
 
@@ -100,6 +101,25 @@ public class Member {
 
 	public void setPets(List<Pet> pets) {
 		this.pets = pets;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(mID, mName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Member other = (Member) obj;
+		return mID == other.mID && Objects.equals(mName, other.mName);
 	}
 
 	@Override

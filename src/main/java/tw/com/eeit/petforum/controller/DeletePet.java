@@ -1,6 +1,7 @@
-package tw.com.eeit.petforum.controller.page.frontend;
+package tw.com.eeit.petforum.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -11,43 +12,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.petforum.model.bean.Member;
-import tw.com.eeit.petforum.model.dao.MemberDAO;
+import tw.com.eeit.petforum.model.bean.Pet;
+import tw.com.eeit.petforum.model.dao.PetDAO;
 import tw.com.eeit.petforum.util.ConnectionFactory;
-import tw.com.eeit.petforum.util.PathConverter;
 
-@WebServlet("/profile")
-public class ToProfile extends HttpServlet {
+@WebServlet("/DeletePet.do")
+public class DeletePet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String mID = request.getParameter("mID");
-		Member m = (Member) request.getSession().getAttribute("loggedInMember");
+		response.setContentType("text/plain;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String pID = request.getParameter("pID");
+		Member m = (Member)		request.getSession().getAttribute("loggedInMember");
 
-		if (mID == null && m == null) {
-			response.sendRedirect("index");
-			return;
+		if (pID == null || pID.equals("")) {
+			out.write("fail");
 		}
 
-		int memberID = (mID == null) ? m.getmID() : Integer.valueOf(mID);
-
+		int petID = Integer.valueOf(pID);
+		
 		try (Connection conn = ConnectionFactory.getConnection()) {
-			MemberDAO mDAO = new MemberDAO(conn);
 
-			m = mDAO.findMemberWithPetByID(memberID);
-
-			if (m == null) {
-				response.sendRedirect("index");
+			PetDAO pDAO = new PetDAO(conn);
+			Pet p = pDAO.findPetWithMemberByID(petID);
+			
+			if(!p.getMember().equals(m)) {
+				out.write("fail");
 				return;
 			}
 
-			request.setAttribute("m", m);
+			pDAO.deletePetByID(petID);
+			out.write("success");
+
 		} catch (SQLException e) {
+			out.write("fail");
 			e.printStackTrace();
 		}
 
-		request.getRequestDispatcher(PathConverter.convertToWebInfPathForFrontend(request.getServletPath()))
-				.forward(request, response);
+		out.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

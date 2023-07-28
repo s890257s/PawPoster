@@ -13,6 +13,21 @@ public class Pet {
 	public Pet() {
 	}
 
+	public Pet(String pName, String type, int pAge, byte[] pPhoto) {
+		this.pName = pName;
+		this.type = type;
+		this.pAge = pAge;
+		this.pPhoto = pPhoto;
+	}
+
+	public Pet(String pName, String type, int pAge, byte[] pPhoto, Member member) {
+		this.pName = pName;
+		this.type = type;
+		this.pAge = pAge;
+		this.pPhoto = pPhoto;
+		this.member = member;
+	}
+
 	public Pet(int pID) {
 		super();
 		this.pID = pID;
