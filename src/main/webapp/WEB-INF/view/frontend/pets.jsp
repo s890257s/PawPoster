@@ -27,6 +27,40 @@
 			</div>
 		</section>
 
+		<div class="d-flex justify-content-center m-3">
+			<div class="accordion w-50">
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#MultipleCriteriaQuery"
+							aria-expanded="false">多條件搜尋</button>
+					</h2>
+					<div class="accordion-collapse collapse" id="MultipleCriteriaQuery">
+						<div class="accordion-body">
+							<div class="mb-3">
+								<label>寵物年齡：<input type="number" name="petAge"
+									class="form-control w-100" min="0" /></label>
+							</div>
+							<div class="mb-3">
+								<label>寵物種類： <input class="form-control"
+									list="petTypeList" name="petType" /> <datalist
+										id="petTypeList">
+										<option value="dog" />
+										<option value="cat" />
+										<option value="bird" />
+										<option value="fish" />
+										<option value="rabbit" />
+										<option value="hamster" />
+										<option value="turtle" />
+									</datalist></label>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div
@@ -39,14 +73,14 @@
 								<img src="${root}/GetPetPhoto.do?pID=${p.pID}" class="w-100" />
 								<p class="card-text fs-3">${p.pName}</p>
 								<div class="d-flex justify-content-between align-items-center">
-										<button type="button"
-											class="btn btn-sm btn-outline-secondary m-2">
-											<i class="fa-regular fa-thumbs-up"></i>
-										</button>
+									<button type="button"
+										class="btn btn-sm btn-outline-secondary m-2">
+										<i class="fa-regular fa-thumbs-up"></i>
+									</button>
 
-										<div class="m-3">
-											<a href="${root}/profile?mID=${p.member.mID}">${p.member.mName }</a>
-										</div>
+									<div class="m-3">
+										<a href="${root}/profile?mID=${p.member.mID}">${p.member.mName }</a>
+									</div>
 								</div>
 							</div>
 						</div>
