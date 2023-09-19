@@ -2,10 +2,10 @@ package tw.com.eeit.petforum.model.bean;
 
 public class Pet {
 
-	private int pID;
+	private Integer pID;
 	private String type;
 	private String pName;
-	private int pAge;
+	private Integer pAge;
 	private byte[] pPhoto;
 	private Member member;
 	private String pPhotoBase64;
@@ -13,14 +13,20 @@ public class Pet {
 	public Pet() {
 	}
 
-	public Pet(String pName, String type, int pAge, byte[] pPhoto) {
+	public Pet(String type, Integer pAge) {
+		super();
+		this.type = type;
+		this.pAge = pAge;
+	}
+
+	public Pet(String pName, String type, Integer pAge, byte[] pPhoto) {
 		this.pName = pName;
 		this.type = type;
 		this.pAge = pAge;
 		this.pPhoto = pPhoto;
 	}
 
-	public Pet(String pName, String type, int pAge, byte[] pPhoto, Member member) {
+	public Pet(String pName, String type, Integer pAge, byte[] pPhoto, Member member) {
 		this.pName = pName;
 		this.type = type;
 		this.pAge = pAge;
@@ -28,16 +34,16 @@ public class Pet {
 		this.member = member;
 	}
 
-	public Pet(int pID) {
+	public Pet(Integer pID) {
 		super();
 		this.pID = pID;
 	}
 
-	public int getpID() {
+	public Integer getpID() {
 		return pID;
 	}
 
-	public void setpID(int pID) {
+	public void setpID(Integer pID) {
 		this.pID = pID;
 	}
 
@@ -57,11 +63,11 @@ public class Pet {
 		this.pName = pName;
 	}
 
-	public int getpAge() {
+	public Integer getpAge() {
 		return pAge;
 	}
 
-	public void setpAge(int pAge) {
+	public void setpAge(Integer pAge) {
 		this.pAge = pAge;
 	}
 

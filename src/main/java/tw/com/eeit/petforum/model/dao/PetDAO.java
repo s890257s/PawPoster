@@ -241,4 +241,64 @@ public class PetDAO {
 		preState.executeUpdate();
 		preState.close();
 	}
+
+	public List<Pet> findPetWithMemberByAgeOrType(Pet p) throws SQLException {
+		String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] AS [p]" + " LEFT JOIN [PetForum].[dbo].[Member] AS [m]"
+				+ " ON [p].[mID] = [m].[mID]" + " WHERE 1=1";
+
+		Integer pAge = p.getpAge();
+		String type = p.getType();
+
+		if (pAge != null) {
+			SQL += " AND [p].[pAge] = ?";
+		}
+
+		if (type != null) {
+			SQL += " AND [p].[type] = ?";
+		}
+
+		int paramIndex = 1;
+		PreparedStatement preState = conn.prepareStatement(SQL);
+
+		if (pAge != null) {
+			preState.setInt(paramIndex++, pAge);
+		}
+
+		if (type != null) {
+			preState.setString(paramIndex++, type);
+		}
+
+		ResultSet rs = preState.executeQuery();
+
+		List<Pet> pList = new ArrayList<Pet>();
+
+		while (rs.next()) {
+			Pet pet = new Pet();
+			pet.setpID(rs.getInt("pID"));
+			pet.setpAge(rs.getInt("pAge"));
+			pet.setpName(rs.getString("pName"));
+			pet.setType(rs.getString("type"));
+			pet.setpPhoto(rs.getBytes("pPhoto"));
+
+			Member m = new Member();
+			m.setmID(rs.getInt("mID"));
+			m.setEmail(rs.getString("email"));
+			m.setPassword(rs.getString("password"));
+			m.setEnabled(rs.getBoolean("enabled"));
+			m.setLevel(rs.getString("level"));
+			m.setmName(rs.getString("mName"));
+			m.setmAge(rs.getInt("mAge"));
+			m.setAddress(rs.getString("address"));
+			m.setmPhoto(rs.getString("mPhoto"));
+
+			pet.setMember(m);
+
+			pList.add(pet);
+		}
+
+		rs.close();
+
+		preState.close();
+		return pList;
+	}
 }
