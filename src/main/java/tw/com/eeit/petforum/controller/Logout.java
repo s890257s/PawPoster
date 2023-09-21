@@ -16,9 +16,6 @@ public class Logout extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.getSession().invalidate();
-		Cookie c = new Cookie("loggedIn", "whatever");
-		c.setMaxAge(0);
-		response.addCookie(c);
 		response.sendRedirect("index");
 	}
 

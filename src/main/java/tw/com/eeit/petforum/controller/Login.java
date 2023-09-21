@@ -37,7 +37,6 @@ public class Login extends HttpServlet {
 			}
 
 			request.getSession().setAttribute("loggedInMember", m);
-			response.addCookie(new Cookie("loggedIn", "whatever"));
 			response.sendRedirect("index");
 		} catch (SQLException e) {
 			e.printStackTrace();
