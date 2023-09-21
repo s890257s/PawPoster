@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.petforum.model.bean.Pet;
 import tw.com.eeit.petforum.model.dao.PetDAO;
+import tw.com.eeit.petforum.model.dto.PetSearchCriteria;
 import tw.com.eeit.petforum.util.ConnectionFactory;
 
 @WebServlet("/QueryPet.do")
@@ -22,16 +23,17 @@ public class QueryPet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String type = request.getParameter("type");
-		Integer age = request.getParameter("age") == null ? null : Integer.valueOf(request.getParameter("age"));
+		String minAge = request.getParameter("minAge");
+		String maxAge = request.getParameter("maxAge");
 
 		try (Connection conn = ConnectionFactory.getConnection()) {
-
 			PetDAO pDAO = new PetDAO(conn);
-			Pet p = new Pet(type, age);
+			PetSearchCriteria psc = new PetSearchCriteria(minAge, maxAge, type);
 
-			List<Pet> pList = pDAO.findPetWithMemberByAgeOrType(p);
-			System.out.println(pList);
+			List<Pet> pList = pDAO.findPetWithMemberByCriteria(psc);
+			request.setAttribute("pList", pList);
 
+			request.getRequestDispatcher("WEB-INF/view/frontend/pets.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

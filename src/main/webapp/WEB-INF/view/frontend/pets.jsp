@@ -44,12 +44,12 @@
 										<label>寵物年齡：</label>
 									</div>
 									<div class="col">
-										<input type="number" name="minQueryAge" class="form-control "
+										<input type="number" name="minAge" class="form-control "
 											min="0" max="100" />
 									</div>
 									<div class="col-1 text-center">～</div>
 									<div class="col">
-										<input type="number" name="maxQueryAge" class="form-control"
+										<input type="number" name="maxAge" class="form-control"
 											min="0" max="100" />
 									</div>
 								</div>
@@ -58,7 +58,7 @@
 										<label>寵物種類：</label>
 									</div>
 									<div class="col">
-										<input class="form-control" list="petTypeList" name="petType" />
+										<input class="form-control" list="petTypeList" name="type" />
 										<datalist id="petTypeList">
 											<option value="dog" />
 											<option value="cat" />
@@ -86,35 +86,43 @@
 			</div>
 		</div>
 
-		<div class="album py-5 bg-light">
-			<div class="container">
-				<div
-					class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center"
-					id="petHome">
+		<c:if test="${pList.isEmpty()}">
+			<h1 class="text-center fs-1">查無寵物</h1>
+		</c:if>
 
-					<c:forEach items="${pList}" var="p">
-						<div class="col">
-							<div class="card shadow-sm">
-								<img src="${root}/GetPetPhoto.do?pID=${p.pID}" class="w-100" />
-								<p class="card-text fs-3">${p.pName}</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<button type="button"
-										class="btn btn-sm btn-outline-secondary m-2">
-										<i class="fa-regular fa-thumbs-up"></i>
-									</button>
+		<c:if test="${!pList.isEmpty()}">
+			<div class="album py-5 bg-light">
+				<div class="container">
+					<div
+						class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center"
+						id="petHome">
 
-									<div class="m-3">
-										<a href="${root}/profile?mID=${p.member.mID}">${p.member.mName }</a>
+
+
+
+						<c:forEach items="${pList}" var="p">
+							<div class="col">
+								<div class="card shadow-sm">
+									<img src="${root}/GetPetPhoto.do?pID=${p.pID}" class="w-100" />
+									<p class="card-text fs-3">${p.pName}</p>
+									<div class="d-flex justify-content-between align-items-center">
+										<button type="button"
+											class="btn btn-sm btn-outline-secondary m-2">
+											<i class="fa-regular fa-thumbs-up"></i>
+										</button>
+
+										<div class="m-3">
+											<a href="${root}/profile?mID=${p.member.mID}">${p.member.mName }</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
 
+					</div>
 				</div>
 			</div>
-		</div>
-
+		</c:if>
 	</main>
 
 	<jsp:include page="${view}/frontend/component/footer.jsp" />
