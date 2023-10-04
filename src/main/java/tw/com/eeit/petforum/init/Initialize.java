@@ -35,7 +35,7 @@ public class Initialize implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
 
-		// 初始化ㄖ
+		// 初始化
 		context.setAttribute("root", context.getContextPath());
 		context.setAttribute("webName", "寵物論壇");
 		context.setAttribute("view", "/WEB-INF/view");
