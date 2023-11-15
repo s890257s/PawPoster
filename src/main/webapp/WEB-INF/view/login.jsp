@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>${webName}-登入</title>
 
-<jsp:include page="${view}/common_dependencies.jsp" />
+<jsp:include page="${component}/common_dependencies.jsp" />
+
 <body class="vh-100">
 
 	<main class="form-signin m-5 text-center ">

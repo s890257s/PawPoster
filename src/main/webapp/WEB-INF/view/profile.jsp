@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>${webName}-個人資料</title>
 
-    <jsp:include page="${view}/common_dependencies.jsp" />
+    <jsp:include page="${component}/common_dependencies.jsp" />
 
     <style>
       .xmark {
@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
   </head>
 
   <body>
-    <jsp:include page="${view}/frontend/component/header.jsp" />
+    <jsp:include page="${component}/header.jsp" />
 
     <main>
       <div class="container py-5">
@@ -115,7 +115,7 @@ pageEncoding="UTF-8"%>
       </div>
     </main>
 
-    <jsp:include page="${view}/frontend/component/footer.jsp" />
+    <jsp:include page="${component}/footer.jsp" />
   </body>
 
   <script>

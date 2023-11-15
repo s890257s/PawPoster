@@ -25,7 +25,6 @@ public class Test extends HttpServlet {
 			PetDAO pDAO = new PetDAO(conn);
 			LikesDAO lDAO = new LikesDAO(conn);
 
-			System.out.println(lDAO.findAllLikesByMemberID(1));
 
 		} catch (Exception e) {
 			e.printStackTrace();

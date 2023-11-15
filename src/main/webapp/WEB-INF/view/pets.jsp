@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>${webName}-所有寵物</title>
 
-<jsp:include page="${view}/common_dependencies.jsp" />
+<jsp:include page="${component}/common_dependencies.jsp" />
 
 </head>
 <body>
 
-	<jsp:include page="${view}/frontend/component/header.jsp" />
+	<jsp:include page="${component}/header.jsp" />
 
 	<main>
 		<section class="py-3 text-center container">
@@ -83,7 +83,7 @@
 
 	</main>
 
-	<jsp:include page="${view}/frontend/component/footer.jsp" />
+	<jsp:include page="${component}/footer.jsp" />
 
 </body>
 </html>

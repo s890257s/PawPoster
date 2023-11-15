@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.controller.page.frontend;
+package tw.com.eeit.petforum.controller.page;
 
 import java.io.IOException;
 
@@ -16,8 +16,8 @@ public class ToIndex extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher(PathConverter.convertToWebInfPathForFrontend(request.getServletPath()))
-				.forward(request, response);
+		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath()))
+		.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

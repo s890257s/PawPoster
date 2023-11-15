@@ -7,10 +7,10 @@ pageEncoding="UTF-8"%>
     <title>${webName}-新增寵物</title>
   </head>
 
-  <jsp:include page="${view}/common_dependencies.jsp" />
+  <jsp:include page="${component}/common_dependencies.jsp" />
 
   <body>
-    <jsp:include page="${view}/frontend/component/header.jsp" />
+    <jsp:include page="${component}/header.jsp" />
     <main class="m-5">
       <div class="container">
         <div class="row">
@@ -73,7 +73,7 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </main>
-    <jsp:include page="${view}/frontend/component/footer.jsp" />
+    <jsp:include page="${component}/footer.jsp" />
   </body>
 
   <script type="text/javascript">

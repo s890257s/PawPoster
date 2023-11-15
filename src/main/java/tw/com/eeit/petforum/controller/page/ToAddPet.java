@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.controller.page.backend;
+package tw.com.eeit.petforum.controller.page;
 
 import java.io.IOException;
 
@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.petforum.util.PathConverter;
 
-@WebServlet("/backend/show_pets")
-public class ToShowPets extends HttpServlet {
+@WebServlet("/add_pet")
+public class ToAddPet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher(PathConverter.convertToWebInfPathForBackend(request.getServletPath()))
+		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath()))
 				.forward(request, response);
 	}
 

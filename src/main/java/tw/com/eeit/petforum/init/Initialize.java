@@ -38,7 +38,7 @@ public class Initialize implements ServletContextListener {
 		// 初始化
 		context.setAttribute("root", context.getContextPath());
 		context.setAttribute("webName", "寵物論壇");
-		context.setAttribute("view", "/WEB-INF/view");
+		context.setAttribute("component", "/WEB-INF/view/component");
 
 		// 以下為「在資料庫塞入預設值」的程式
 		INITIALIZATION_DATA_PATH = context.getRealPath(INITIALIZATION_DATA_PATH);
