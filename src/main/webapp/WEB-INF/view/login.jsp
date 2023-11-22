@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>${webName}-登入</title>
 
-<jsp:include page="${component}/common_dependencies.jsp" />
+<jsp:include page="${component}/common_imports.jsp" />
 
 <body class="vh-100">
 

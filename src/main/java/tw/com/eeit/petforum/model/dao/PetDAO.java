@@ -9,7 +9,6 @@ import java.util.List;
 
 import tw.com.eeit.petforum.model.bean.Member;
 import tw.com.eeit.petforum.model.bean.Pet;
-import tw.com.eeit.petforum.model.dto.PetSearchCriteria;
 
 /**
  * 只要是跟Pet資料表有關的任何互動，都要寫在此DAO之中。 DAO內的所有方法都拋出錯誤，交給Service處理。
@@ -243,80 +242,4 @@ public class PetDAO {
 		preState.close();
 	}
 
-	/**
-	 * 多條件查詢寵物，可接受最小年齡minAge、最大年齡maxAge、種類type。 <br>
-	 * 將條件封裝成PetSearchCriteria，定義在model.dto中。<br>
-	 * dto(data transfer object)為一種資料傳輸物件。<br>
-	 * <p>
-	 * 
-	 * @throws SQLException
-	 * @return List<Pet> 所有寵物的集合，包含主人的資訊。
-	 */
-	public List<Pet> findPetWithMemberByCriteria(PetSearchCriteria psc) throws SQLException {
-		String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] AS [p]" + " LEFT JOIN [PetForum].[dbo].[Member] AS [m]"
-				+ " ON [p].[mID] = [m].[mID]" + " WHERE 1=1";
-
-		String minAge = psc.getMinAge();
-		String maxAge = psc.getMaxAge();
-		String type = psc.getType();
-
-		if (!"".equals(minAge)) {
-			SQL += " AND [p].[pAge] >= ?";
-		}
-
-		if (!"".equals(maxAge)) {
-			SQL += " AND [p].[pAge] <= ?";
-		}
-
-		if (!"".equals(type)) {
-			SQL += " AND [p].[type] = ?";
-		}
-
-		int paramIndex = 1;
-		PreparedStatement preState = conn.prepareStatement(SQL);
-
-		if (!"".equals(minAge)) {
-			preState.setString(paramIndex++, minAge);
-		}
-
-		if (!"".equals(maxAge)) {
-			preState.setString(paramIndex++, maxAge);
-		}
-
-		if (!"".equals(type)) {
-			preState.setString(paramIndex++, type);
-		}
-
-		ResultSet rs = preState.executeQuery();
-
-		List<Pet> pList = new ArrayList<Pet>();
-
-		while (rs.next()) {
-			Pet pet = new Pet();
-			pet.setpID(rs.getInt("pID"));
-			pet.setpAge(rs.getInt("pAge"));
-			pet.setpName(rs.getString("pName"));
-			pet.setType(rs.getString("type"));
-			pet.setpPhoto(rs.getBytes("pPhoto"));
-
-			Member m = new Member();
-			m.setmID(rs.getInt("mID"));
-			m.setEmail(rs.getString("email"));
-			m.setPassword(rs.getString("password"));
-			m.setEnabled(rs.getBoolean("enabled"));
-			m.setLevel(rs.getString("level"));
-			m.setmName(rs.getString("mName"));
-			m.setmAge(rs.getInt("mAge"));
-			m.setAddress(rs.getString("address"));
-			m.setmPhoto(rs.getString("mPhoto"));
-
-			pet.setMember(m);
-			pList.add(pet);
-		}
-
-		rs.close();
-
-		preState.close();
-		return pList;
-	}
 }

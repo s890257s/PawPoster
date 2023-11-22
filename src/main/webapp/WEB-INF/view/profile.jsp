@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>${webName}-個人資料</title>
 
-    <jsp:include page="${component}/common_dependencies.jsp" />
+    <jsp:include page="${component}/common_imports.jsp" />
 
     <style>
       .xmark {

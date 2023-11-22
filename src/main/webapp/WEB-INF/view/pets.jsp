@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>${webName}-所有寵物</title>
 
-<jsp:include page="${component}/common_dependencies.jsp" />
+<jsp:include page="${component}/common_imports.jsp" />
 
 </head>
 <body>

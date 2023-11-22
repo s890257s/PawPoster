@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
     <title>${webName}-新增寵物</title>
   </head>
 
-  <jsp:include page="${component}/common_dependencies.jsp" />
+  <jsp:include page="${component}/common_imports.jsp" />
 
   <body>
     <jsp:include page="${component}/header.jsp" />
