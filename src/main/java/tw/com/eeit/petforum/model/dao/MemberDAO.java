@@ -35,7 +35,7 @@ public class MemberDAO {
 	 * @return Member 會員的資料載體，裡面有會員的所有資料； 若ID不存在則回傳null。
 	 */
 	public Member findMemberByID(int memberID) throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] WHERE mID = ?";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Member] WHERE mID = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, memberID);
 		ResultSet rs = preState.executeQuery();
@@ -68,7 +68,7 @@ public class MemberDAO {
 	 * @return Member 會員的資料載體，裡面有會員的所有資料(含寵物資訊)； 若ID不存在則回傳null。
 	 */
 	public Member findMemberWithPetByID(int memberID) throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] AS [m]" + " LEFT JOIN [PetForum].[dbo].[Pet] AS [p]"
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Member] AS [m]" + " LEFT JOIN [PawPoster].[dbo].[Pet] AS [p]"
 				+ " ON [m].[mID] = [p].[mID]" + " WHERE [m].[mID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, memberID);
@@ -115,7 +115,7 @@ public class MemberDAO {
 	 * @return List<Member> 所有會員的集合，包含寵物資訊。
 	 */
 	public List<Member> findAllMemberWithPet() throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] AS [m]" + " LEFT JOIN [PetForum].[dbo].[Pet] AS [p]"
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Member] AS [m]" + " LEFT JOIN [PawPoster].[dbo].[Pet] AS [p]"
 				+ " ON [m].[mID] = [p].[mID]";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 
@@ -193,7 +193,7 @@ public class MemberDAO {
 	 * @return Member 會員的資料載體，裡面有會員的所有資料
 	 */
 	public Member findMemberByEmailAndPassword(String email, String password) throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Member] WHERE [email] COLLATE Latin1_General_CS_AS = ? AND [password] COLLATE Latin1_General_CS_AS = ?";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Member] WHERE [email] COLLATE Latin1_General_CS_AS = ? AND [password] COLLATE Latin1_General_CS_AS = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setString(1, email);
 		preState.setString(2, password);
@@ -222,7 +222,7 @@ public class MemberDAO {
 	}
 
 	public void updateEnabledByID(int memberID, boolean status) throws SQLException {
-		final String SQL = "UPDATE [PetForum].[dbo].[Member] SET [enabled] = ? WHERE [mID] = ?";
+		final String SQL = "UPDATE [PawPoster].[dbo].[Member] SET [enabled] = ? WHERE [mID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setBoolean(1, status);
 		preState.setInt(2, memberID);

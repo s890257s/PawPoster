@@ -35,7 +35,7 @@ public class PetDAO {
 	 * @return Pet 寵物的資料載體，裡面有寵物的所有資料； 若ID不存在則回傳null。
 	 */
 	public Pet findPetByID(int petID) throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] WHERE [pID] = ?";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] WHERE [pID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, petID);
 		ResultSet rs = preState.executeQuery();
@@ -63,7 +63,7 @@ public class PetDAO {
 	 * @return Pet 寵物的資訊，包含主人的資訊。
 	 */
 	public Pet findPetWithMemberByID(int petID) throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] AS [p]" + " LEFT JOIN [PetForum].[dbo].[Member] AS [m]"
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] AS [p]" + " LEFT JOIN [PawPoster].[dbo].[Member] AS [m]"
 				+ " ON [p].[mID] = [m].[mID]" + " WHERE [p].[pID] = ?";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
@@ -109,7 +109,7 @@ public class PetDAO {
 	 * @return List<Pet> 所有寵物的集合，包含主人的資訊。
 	 */
 	public List<Pet> findAllPetWithMember() throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Pet] AS [p]" + " LEFT JOIN [PetForum].[dbo].[Member] AS [m]"
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] AS [p]" + " LEFT JOIN [PawPoster].[dbo].[Member] AS [m]"
 				+ " ON [p].[mID] = [m].[mID]";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
@@ -155,7 +155,7 @@ public class PetDAO {
 	 * @throws SQLException
 	 */
 	public void insertPet(Pet p) throws SQLException {
-		final String SQL = "INSERT INTO [PetForum].[dbo].[Pet]([pName], [type], [pAge], [pPhoto], [mID]) VALUES(?, ?, ?, ?, ?)";
+		final String SQL = "INSERT INTO [PawPoster].[dbo].[Pet]([pName], [type], [pAge], [pPhoto], [mID]) VALUES(?, ?, ?, ?, ?)";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setString(1, p.getpName());
@@ -175,7 +175,7 @@ public class PetDAO {
 	 * @throws SQLException
 	 */
 	public void insertPetByMemberID(int memberID, Pet p) throws SQLException {
-		final String SQL = "INSERT INTO [PetForum].[dbo].[Pet]([pName], [type], [pAge], [pPhoto], [mID]) VALUES(?, ?, ?, ?, ?)";
+		final String SQL = "INSERT INTO [PawPoster].[dbo].[Pet]([pName], [type], [pAge], [pPhoto], [mID]) VALUES(?, ?, ?, ?, ?)";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setString(1, p.getpName());
@@ -194,7 +194,7 @@ public class PetDAO {
 	 * @throws SQLException
 	 */
 	public void deletePetByID(int petID) throws SQLException {
-		final String SQL = "DELETE FROM [PetForum].[dbo].[Pet] WHERE [pID] = ?";
+		final String SQL = "DELETE FROM [PawPoster].[dbo].[Pet] WHERE [pID] = ?";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, petID);
@@ -210,7 +210,7 @@ public class PetDAO {
 	 * @throws SQLException
 	 */
 	public void updatePet(Pet p) throws SQLException {
-		final String SQL = "UPDATE [PetForum].[dbo].[Pet] SET [pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
+		final String SQL = "UPDATE [PawPoster].[dbo].[Pet] SET [pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setString(1, p.getpName());
 		preState.setString(2, p.getType());
@@ -229,7 +229,7 @@ public class PetDAO {
 	 * @throws SQLException
 	 */
 	public void updatePetByID(int pID, Pet p) throws SQLException {
-		final String SQL = "UPDATE [PetForum].[dbo].[Pet] SET [pID] = ?,[pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
+		final String SQL = "UPDATE [PawPoster].[dbo].[Pet] SET [pID] = ?,[pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, p.getpID());
 		preState.setString(2, p.getpName());

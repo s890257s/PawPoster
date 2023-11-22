@@ -31,7 +31,7 @@ public class LikesDAO {
 	 * @return List<Likes> 按讚紀錄的集合。
 	 */
 	public List<Likes> findAllLikesByMemberID(int memberID) throws SQLException {
-		final String SQL = "SELECT * FROM [PetForum].[dbo].[Likes] WHERE [mID] = ?";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Likes] WHERE [mID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, memberID);
 

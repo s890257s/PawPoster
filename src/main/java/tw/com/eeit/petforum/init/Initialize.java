@@ -55,8 +55,8 @@ public class Initialize implements ServletContextListener {
 	}
 
 	private void createDB(Connection conn) throws SQLException {
-		// 如果PetForum資料庫不存在，則建立PetForum資料庫
-		String SQL = "IF DB_ID('PetForum') IS NULL CREATE DATABASE PetForum";
+		// 如果PawPoster資料庫不存在，則建立PawPoster資料庫
+		String SQL = "IF DB_ID('PawPoster') IS NULL CREATE DATABASE PawPoster";
 
 		Statement state = conn.createStatement();
 		state.execute(SQL);
@@ -65,7 +65,7 @@ public class Initialize implements ServletContextListener {
 
 	private void createTableAndInsertData(Connection conn) throws Exception {
 		// 如果Member資料表不存在，則建立Member資料表
-		String SQL = "IF OBJECT_ID('[PetForum].[dbo].[Member]') IS NULL " + "CREATE TABLE [PetForum].[dbo].[member]("
+		String SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Member]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[member]("
 				+ " [mID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [email] [nvarchar](50) NOT NULL,"
 				+ " [password] [nvarchar](50) NOT NULL," + " [enabled] [bit] NOT NULL,"
 				+ " [level] [nvarchar](10) NOT NULL," + " [mName] [nvarchar](10)," + " [mAge] [int],"
@@ -75,32 +75,32 @@ public class Initialize implements ServletContextListener {
 		state.close();
 
 		// 如果Pet資料表不存在，則建立Pet資料表
-		SQL = "IF OBJECT_ID('[PetForum].[dbo].[Pet]') IS NULL " + "CREATE TABLE [PetForum].[dbo].[Pet]("
+		SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Pet]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[Pet]("
 				+ " [pID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [type] [nvarchar](50) NOT NULL,"
 				+ " [pName] [nvarchar](50)," + " [pAge] [int]," + " [pPhoto] [varbinary](max),"
-				+ " [mID] [int] FOREIGN KEY REFERENCES [PetForum].[dbo].[Member]([mID])" + ")";
+				+ " [mID] [int] FOREIGN KEY REFERENCES [PawPoster].[dbo].[Member]([mID])" + ")";
 		state = conn.createStatement();
 		state.execute(SQL);
 		state.close();
 
 		// 如果Likes資料表不存在，則建立Likes資料表
-		SQL = "IF OBJECT_ID('[PetForum].[dbo].[Likes]') IS NULL " + "CREATE TABLE [PetForum].[dbo].[Likes]("
+		SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Likes]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[Likes]("
 				+ " [lID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [time] [datetime] NOT NULL,"
-				+ " [mID] [int] FOREIGN KEY REFERENCES [PetForum].[dbo].[Member]([mID]),"
-				+ " [pID] [int] FOREIGN KEY REFERENCES [PetForum].[dbo].[Pet]([pID])" + ")";
+				+ " [mID] [int] FOREIGN KEY REFERENCES [PawPoster].[dbo].[Member]([mID]),"
+				+ " [pID] [int] FOREIGN KEY REFERENCES [PawPoster].[dbo].[Pet]([pID])" + ")";
 		state = conn.createStatement();
 		state.execute(SQL);
 		state.close();
 
 		// 如果Member資料表中沒有任何一筆資料，則新增。
-		if (!conn.createStatement().executeQuery("SELECT [mID] FROM [PetForum].[dbo].[Member]").next()) {
+		if (!conn.createStatement().executeQuery("SELECT [mID] FROM [PawPoster].[dbo].[Member]").next()) {
 			// 使用Gson、JavaIO，讀取webapp/META-INF/initialization_data/Member.json的資料
 			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "Member.json"));
 			List<Member> mList = new Gson().fromJson(br, new TypeToken<List<Member>>() {
 			}.getType());
 			br.close();
 
-			SQL = "INSERT INTO [PetForum].[dbo].[Member] ([email], [password], [enabled], [level], [mName], [mAge], [address], [mPhoto]) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			SQL = "INSERT INTO [PawPoster].[dbo].[Member] ([email], [password], [enabled], [level], [mName], [mAge], [address], [mPhoto]) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 			// 新增資料到資料表
 			PreparedStatement preState = conn.prepareStatement(SQL);
@@ -126,14 +126,14 @@ public class Initialize implements ServletContextListener {
 		}
 
 		// 如果Pet資料表中沒有任何一筆資料，則新增。
-		if (!conn.createStatement().executeQuery("SELECT [pID] FROM [PetForum].[dbo].[Pet]").next()) {
+		if (!conn.createStatement().executeQuery("SELECT [pID] FROM [PawPoster].[dbo].[Pet]").next()) {
 			// 使用Gson、JavaIO，讀取webapp/META-INF/initialization_data/Member.json的資料(內含Pet資訊)
 			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "Member.json"));
 			List<Member> mList = new Gson().fromJson(br, new TypeToken<List<Member>>() {
 			}.getType());
 			br.close();
 
-			SQL = "INSERT INTO [PetForum].[dbo].[Pet] ([type], [pName], [pAge], [pPhoto], [mID]) VALUES (?, ?, ?, ?, ?)";
+			SQL = "INSERT INTO [PawPoster].[dbo].[Pet] ([type], [pName], [pAge], [pPhoto], [mID]) VALUES (?, ?, ?, ?, ?)";
 
 			PreparedStatement preState = conn.prepareStatement(SQL);
 
@@ -160,7 +160,7 @@ public class Initialize implements ServletContextListener {
 		}
 
 		// 如果Likes資料表中沒有任何一筆資料，則新增。
-		if (!conn.createStatement().executeQuery("SELECT [pID] FROM [PetForum].[dbo].[Likes]").next()) {
+		if (!conn.createStatement().executeQuery("SELECT [pID] FROM [PawPoster].[dbo].[Likes]").next()) {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd HH:mm").create();
 
 			// 使用Gson、JavaIO，讀取webapp/META-INF/initialization_data/Likes.json的資料
@@ -169,7 +169,7 @@ public class Initialize implements ServletContextListener {
 			}.getType());
 			br.close();
 
-			SQL = "INSERT INTO [PetForum].[dbo].[Likes] ([time], [mID], [pID]) VALUES (?, ?, ?)";
+			SQL = "INSERT INTO [PawPoster].[dbo].[Likes] ([time], [mID], [pID]) VALUES (?, ?, ?)";
 
 			PreparedStatement preState = conn.prepareStatement(SQL);
 
