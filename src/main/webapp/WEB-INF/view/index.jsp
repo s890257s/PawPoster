@@ -9,7 +9,7 @@
 <title>${webName}</title>
 
 <!-- web icon -->
-<link rel="icon" href="/PetForum/assets/favicon.ico">
+<link rel="icon" href="${root}/assets/favicon.ico">
 
 <!-- bootstrap 5.1.3 CSS -->
 <link
@@ -32,7 +32,7 @@
 
 <style type="text/css">
 .backgroundImg {
-	background-image: url('/PetForum/assets/pet.png');
+	background-image: url('${root}/assets/pet.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -50,17 +50,15 @@
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="/PetForum/" class="nav-link px-2 link-secondary">寵物論壇</a></li>
-					<li><a href="/PetForum/pets" class="nav-link px-2 link-dark">萌寵們</a></li>
-					<li><a href="/PetForum/profile"
+					<li><a href="${root}/" class="nav-link px-2 link-secondary">PawPoster</a></li>
+					<li><a href="${root}/pets" class="nav-link px-2 link-dark">萌寵們</a></li>
+					<li><a href="${root}/profile"
 						class="nav-link px-2 link-dark">個人資訊</a></li>
-					<li><a href="/PetForum/add_pet"
+					<li><a href="${root}/add_pet"
 						class="nav-link px-2 link-dark">新增寵物</a></li>
-					<li><a href="/PetForum/backend/index"
-						class="nav-link px-2 link-dark">後臺管理</a></li>
 				</ul>
 				<div class="dropdown text-end">
-					<a href="/PetForum/login">
+					<a href="${root}/login">
 						<button class="btn btn-primary">會員登入</button>
 					</a>
 				</div>
@@ -72,9 +70,9 @@
 		<div
 			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center backgroundImg">
 			<div class="col-md-5 p-lg-5 mx-auto my-5">
-				<h1 class="display-4 fw-normal text-light">寵物論壇</h1>
+				<h1 class="display-4 fw-normal text-light">PawPoster</h1>
 				<p class="lead fw-normal text-light">我家的貓咪會寫JAVA!!</p>
-				<a class="btn btn-warning" href="/PetForum/pets">快來康康!</a>
+				<a class="btn btn-warning" href="${root}/pets">快來康康!</a>
 			</div>
 		</div>
 	</main>
