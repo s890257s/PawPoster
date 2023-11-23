@@ -52,4 +52,60 @@ public class LikesDAO {
 		preState.close();
 		return lList;
 	}
+
+	/**
+	 * 根據會員ID與寵物ID尋找會員的單筆按讚紀錄。
+	 * 
+	 * @param likes 按讚的物件。
+	 * @return Likes 單筆按讚記錄，若無則回傳null。
+	 */
+	public Likes findLikeByMemberIDAndPetID(Likes likes) throws SQLException {
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Likes] WHERE [mID] = ? AND [pID] = ?";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setInt(1, likes.getMember().getmID());
+		preState.setInt(2, likes.getPet().getpID());
+
+		ResultSet rs = preState.executeQuery();
+		Likes l = null;
+		if (rs.next()) {
+			l = new Likes();
+			l.setlID(rs.getInt("lID"));
+			l.setTime(rs.getDate("time"));
+			l.setMember(new Member(rs.getInt("mID")));
+			l.setPet(new Pet(rs.getInt("pID")));
+		}
+
+		rs.close();
+		preState.close();
+		return l;
+	}
+
+	/**
+	 * 新增按讚記錄。
+	 * 
+	 * @param likes 按讚的物件。
+	 */
+	public void addLike(Likes likes) throws SQLException {
+		final String SQL = "INSERT INTO [PawPoster].[dbo].[Likes]([time], [mID], [pID]) VALUES(?, ?, ?)";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setDate(1, new java.sql.Date(likes.getTime().getTime()));
+		preState.setInt(2, likes.getMember().getmID());
+		preState.setInt(3, likes.getPet().getpID());
+
+		preState.execute();
+	}
+
+	/**
+	 * 移除按讚記錄。
+	 * 
+	 * @param likes 按讚的物件。
+	 */
+	public void removeLike(Likes likes) throws SQLException {
+		final String SQL = "DELETE FROM [PawPoster].[dbo].[Likes] WHERE [mID] = ? AND [pID] = ?";
+		PreparedStatement preState = conn.prepareStatement(SQL);
+		preState.setInt(1, likes.getMember().getmID());
+		preState.setInt(2, likes.getPet().getpID());
+
+		preState.execute();
+	}
 }

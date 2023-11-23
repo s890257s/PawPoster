@@ -35,7 +35,7 @@ public class MemberDAO {
 	 * @return Member 會員的資料載體，裡面有會員的所有資料； 若ID不存在則回傳null。
 	 */
 	public Member findMemberByID(int memberID) throws SQLException {
-		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Member] WHERE mID = ?";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Member] WHERE [mID] = ?";
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, memberID);
 		ResultSet rs = preState.executeQuery();

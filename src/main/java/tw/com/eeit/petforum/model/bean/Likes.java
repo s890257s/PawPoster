@@ -9,6 +9,15 @@ public class Likes {
 	private Member member;
 	private Pet pet;
 
+	public Likes() {
+	}
+
+	public Likes(int memberID, int petID) {
+		member = new Member(memberID);
+		pet = new Pet(petID);
+		time = new Date();
+	}
+
 	public Integer getlID() {
 		return lID;
 	}

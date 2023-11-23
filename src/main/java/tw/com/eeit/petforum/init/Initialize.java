@@ -65,7 +65,7 @@ public class Initialize implements ServletContextListener {
 
 	private void createTableAndInsertData(Connection conn) throws Exception {
 		// 如果Member資料表不存在，則建立Member資料表
-		String SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Member]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[member]("
+		String SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Member]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[Member]("
 				+ " [mID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [email] [nvarchar](50) NOT NULL,"
 				+ " [password] [nvarchar](50) NOT NULL," + " [enabled] [bit] NOT NULL,"
 				+ " [level] [nvarchar](10) NOT NULL," + " [mName] [nvarchar](10)," + " [mAge] [int],"

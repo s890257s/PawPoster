@@ -2,5 +2,5 @@
 	<Resource name="jdbc/MSSQL" type="javax.sql.DataSource"
 		auth="Container" username="sa" password="1234"
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;trustServerCertificate=true" />
+		url="jdbc:sqlserver://192.168.1.200:1433;trustServerCertificate=true" />
 </Context>
