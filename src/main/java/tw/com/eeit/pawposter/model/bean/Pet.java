@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.model.bean;
+package tw.com.eeit.pawposter.model.bean;
 
 public class Pet {
 

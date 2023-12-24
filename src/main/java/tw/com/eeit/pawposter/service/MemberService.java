@@ -1,10 +1,10 @@
-package tw.com.eeit.petforum.service;
+package tw.com.eeit.pawposter.service;
 
 import java.sql.Connection;
 
-import tw.com.eeit.petforum.model.bean.Likes;
-import tw.com.eeit.petforum.model.dao.LikesDAO;
-import tw.com.eeit.petforum.util.ConnectionFactory;
+import tw.com.eeit.pawposter.model.bean.Likes;
+import tw.com.eeit.pawposter.model.dao.LikesDAO;
+import tw.com.eeit.pawposter.util.ConnectionFactory;
 
 public class MemberService {
 

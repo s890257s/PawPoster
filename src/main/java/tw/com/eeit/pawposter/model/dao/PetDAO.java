@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.model.dao;
+package tw.com.eeit.pawposter.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import tw.com.eeit.petforum.model.bean.Member;
-import tw.com.eeit.petforum.model.bean.Pet;
+import tw.com.eeit.pawposter.model.bean.Member;
+import tw.com.eeit.pawposter.model.bean.Pet;
 
 /**
  * 只要是跟Pet資料表有關的任何互動，都要寫在此DAO之中。 DAO內的所有方法都拋出錯誤，交給Service處理。

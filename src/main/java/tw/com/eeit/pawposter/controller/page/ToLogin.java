@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.controller.page;
+package tw.com.eeit.pawposter.controller.page;
 
 import java.io.IOException;
 
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tw.com.eeit.petforum.util.PathConverter;
+import tw.com.eeit.pawposter.util.PathConverter;
 
-@WebServlet("/index")
-public class ToIndex extends HttpServlet {
+@WebServlet("/login")
+public class ToLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

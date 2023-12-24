@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.init;
+package tw.com.eeit.pawposter.init;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -21,10 +21,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import tw.com.eeit.petforum.model.bean.Likes;
-import tw.com.eeit.petforum.model.bean.Member;
-import tw.com.eeit.petforum.model.bean.Pet;
-import tw.com.eeit.petforum.util.ConnectionFactory;
+import tw.com.eeit.pawposter.model.bean.Likes;
+import tw.com.eeit.pawposter.model.bean.Member;
+import tw.com.eeit.pawposter.model.bean.Pet;
+import tw.com.eeit.pawposter.util.ConnectionFactory;
 
 @WebListener
 public class Initialize implements ServletContextListener {

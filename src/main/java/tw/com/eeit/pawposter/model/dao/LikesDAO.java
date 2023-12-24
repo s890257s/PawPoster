@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.model.dao;
+package tw.com.eeit.pawposter.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import tw.com.eeit.petforum.model.bean.Likes;
-import tw.com.eeit.petforum.model.bean.Member;
-import tw.com.eeit.petforum.model.bean.Pet;
+import tw.com.eeit.pawposter.model.bean.Likes;
+import tw.com.eeit.pawposter.model.bean.Member;
+import tw.com.eeit.pawposter.model.bean.Pet;
 
 public class LikesDAO {
 

@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.controller;
+package tw.com.eeit.pawposter.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tw.com.eeit.petforum.model.bean.Likes;
-import tw.com.eeit.petforum.model.dao.LikesDAO;
-import tw.com.eeit.petforum.model.dao.MemberDAO;
-import tw.com.eeit.petforum.model.dao.PetDAO;
-import tw.com.eeit.petforum.service.MemberService;
-import tw.com.eeit.petforum.util.ConnectionFactory;
+import tw.com.eeit.pawposter.model.dao.LikesDAO;
+import tw.com.eeit.pawposter.model.dao.MemberDAO;
+import tw.com.eeit.pawposter.model.dao.PetDAO;
+import tw.com.eeit.pawposter.service.MemberService;
+import tw.com.eeit.pawposter.util.ConnectionFactory;
 
 @WebServlet("/Test")
 public class Test extends HttpServlet {

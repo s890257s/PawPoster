@@ -1,4 +1,4 @@
-package tw.com.eeit.petforum.util;
+package tw.com.eeit.pawposter.util;
 
 import java.sql.Connection;
 
