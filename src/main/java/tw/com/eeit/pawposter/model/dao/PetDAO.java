@@ -63,8 +63,8 @@ public class PetDAO {
 	 * @return Pet 寵物的資訊，包含主人的資訊。
 	 */
 	public Pet findPetWithMemberByID(int petID) throws SQLException {
-		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] AS [p]" + " LEFT JOIN [PawPoster].[dbo].[Member] AS [m]"
-				+ " ON [p].[mID] = [m].[mID]" + " WHERE [p].[pID] = ?";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] AS [p]"
+				+ " LEFT JOIN [PawPoster].[dbo].[Member] AS [m]" + " ON [p].[mID] = [m].[mID]" + " WHERE [p].[pID] = ?";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		preState.setInt(1, petID);
@@ -109,8 +109,8 @@ public class PetDAO {
 	 * @return List<Pet> 所有寵物的集合，包含主人的資訊。
 	 */
 	public List<Pet> findAllPetWithMember() throws SQLException {
-		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] AS [p]" + " LEFT JOIN [PawPoster].[dbo].[Member] AS [m]"
-				+ " ON [p].[mID] = [m].[mID]";
+		final String SQL = "SELECT * FROM [PawPoster].[dbo].[Pet] AS [p]"
+				+ " LEFT JOIN [PawPoster].[dbo].[Member] AS [m]" + " ON [p].[mID] = [m].[mID]";
 
 		PreparedStatement preState = conn.prepareStatement(SQL);
 		ResultSet rs = preState.executeQuery();
@@ -217,26 +217,6 @@ public class PetDAO {
 		preState.setInt(3, p.getpAge());
 		preState.setBytes(4, p.getpPhoto());
 		preState.setInt(5, p.getpID());
-
-		preState.executeUpdate();
-		preState.close();
-	}
-
-	/**
-	 * 命名與新增(insert)的風格類似。<br>
-	 * 此方法可以修改petID，但要注意通常不會更新流水號ID(甚至不應該暴露給使用者)。
-	 * 
-	 * @throws SQLException
-	 */
-	public void updatePetByID(int pID, Pet p) throws SQLException {
-		final String SQL = "UPDATE [PawPoster].[dbo].[Pet] SET [pID] = ?,[pName] = ?, [type] = ?, [pAge] = ?, [pPhoto] = ? WHERE [pID] = ?";
-		PreparedStatement preState = conn.prepareStatement(SQL);
-		preState.setInt(1, p.getpID());
-		preState.setString(2, p.getpName());
-		preState.setString(3, p.getType());
-		preState.setInt(4, p.getpAge());
-		preState.setBytes(5, p.getpPhoto());
-		preState.setInt(6, pID);
 
 		preState.executeUpdate();
 		preState.close();
