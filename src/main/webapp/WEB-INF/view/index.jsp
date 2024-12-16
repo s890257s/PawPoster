@@ -44,6 +44,7 @@
 
 <body>
 
+	<!-- header -->
 	<header class="p-3 mb-3 border-bottom">
 		<div class="container">
 			<div
@@ -51,14 +52,15 @@
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="${root}/" class="nav-link px-2 link-secondary">PawPoster</a></li>
-					<li><a href="${root}/pets" class="nav-link px-2 link-dark">萌寵們</a></li>
-					<li><a href="${root}/profile"
+					<li><a href="${root}/page/pets"
+						class="nav-link px-2 link-dark">萌寵們</a></li>
+					<li><a href="${root}/page/profile"
 						class="nav-link px-2 link-dark">個人資訊</a></li>
-					<li><a href="${root}/add_pet"
+					<li><a href="${root}/page/pets/create"
 						class="nav-link px-2 link-dark">新增寵物</a></li>
 				</ul>
 				<div class="dropdown text-end">
-					<a href="${root}/login">
+					<a href="${root}/page/login">
 						<button class="btn btn-primary">會員登入</button>
 					</a>
 				</div>
@@ -66,21 +68,23 @@
 		</div>
 	</header>
 
+	<!-- main -->
 	<main>
 		<div
 			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center backgroundImg">
 			<div class="col-md-5 p-lg-5 mx-auto my-5">
 				<h1 class="display-4 fw-normal text-light">PawPoster</h1>
-				<p class="lead fw-normal text-light">我家的貓咪會寫JAVA!!</p>
-				<a class="btn btn-warning" href="${root}/pets">快來康康!</a>
+				<p class="lead fw-normal text-light ">我家的貓咪會寫JAVA!!</p>
 			</div>
 		</div>
 	</main>
 
+	<!-- footer -->
 	<footer class="footer mt-5 py-3 bg-black ">
 		<div class="container text-center">
 			<span class=" text-light">Copyright © 2023 <a
-				href="https://github.com/s890257s">Allen</a>. All rights reserved.
+				href="https://github.com/s890257s">Allen Hong</a>. All rights
+				reserved.
 			</span>
 		</div>
 	</footer>

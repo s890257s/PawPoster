@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import tw.com.eeit.pawposter.model.bean.MemberPetLike;
+import tw.com.eeit.pawposter.model.po.MemberPetLike;
 import tw.com.eeit.pawposter.util.DateTool;
 
 public class MemberPetLikeDao {

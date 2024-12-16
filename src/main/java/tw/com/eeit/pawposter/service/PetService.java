@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import tw.com.eeit.pawposter.model.bean.Pet;
 import tw.com.eeit.pawposter.model.dao.PetDao;
+import tw.com.eeit.pawposter.model.po.Pet;
 import tw.com.eeit.pawposter.util.ConnectionFactory;
 
 public class PetService {

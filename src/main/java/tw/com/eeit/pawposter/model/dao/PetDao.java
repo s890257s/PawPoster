@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import tw.com.eeit.pawposter.model.bean.Member;
-import tw.com.eeit.pawposter.model.bean.Pet;
+import tw.com.eeit.pawposter.model.po.Member;
+import tw.com.eeit.pawposter.model.po.Pet;
 
 /**
  * 只要是跟Pet資料表有關的任何互動，都要寫在此 Dao 之中。Dao 內的所有方法都拋出錯誤，交給 Service 處理。

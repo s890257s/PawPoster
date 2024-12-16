@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import tw.com.eeit.pawposter.model.bean.Member;
-import tw.com.eeit.pawposter.model.bean.MemberPetLike;
 import tw.com.eeit.pawposter.model.dao.MemberDao;
 import tw.com.eeit.pawposter.model.dao.MemberPetLikeDao;
+import tw.com.eeit.pawposter.model.po.Member;
+import tw.com.eeit.pawposter.model.po.MemberPetLike;
 import tw.com.eeit.pawposter.util.ConnectionFactory;
 
 public class MemberService {

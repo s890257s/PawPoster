@@ -11,8 +11,10 @@
 </head>
 <body>
 
+	<!-- header -->
 	<jsp:include page="${component}/header.jsp" />
 
+	<!-- main -->
 	<main>
 		<section class="py-3 text-center container">
 			<div class="row py-lg-5">
@@ -83,6 +85,7 @@
 
 	</main>
 
+	<!-- footer -->
 	<jsp:include page="${component}/footer.jsp" />
 
 </body>

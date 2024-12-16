@@ -19,9 +19,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import tw.com.eeit.pawposter.model.bean.Member;
-import tw.com.eeit.pawposter.model.bean.MemberPetLike;
-import tw.com.eeit.pawposter.model.bean.Pet;
+import tw.com.eeit.pawposter.model.po.Member;
+import tw.com.eeit.pawposter.model.po.MemberPetLike;
+import tw.com.eeit.pawposter.model.po.Pet;
 import tw.com.eeit.pawposter.service.MemberService;
 import tw.com.eeit.pawposter.service.PetService;
 import tw.com.eeit.pawposter.util.ConnectionFactory;
@@ -29,7 +29,7 @@ import tw.com.eeit.pawposter.util.ConnectionFactory;
 @WebListener
 public class Initialize implements ServletContextListener {
 
-	private String INITIALIZATION_DATA_PATH = "META-INF\\initialization_data";
+	private String INITIALIZATION_DATA_PATH = "META-INF/initialization_data";
 	private Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
 
 	@Override
@@ -39,7 +39,7 @@ public class Initialize implements ServletContextListener {
 		// 初始化
 		context.setAttribute("root", context.getContextPath());
 		context.setAttribute("webName", "PawPoster");
-		context.setAttribute("component", "\\WEB-INF\\view\\component");
+		context.setAttribute("component", "/WEB-INF/view/component");
 
 		// 以下為「在資料庫塞入預設值」的程式
 		INITIALIZATION_DATA_PATH = context.getRealPath(INITIALIZATION_DATA_PATH) + "\\";

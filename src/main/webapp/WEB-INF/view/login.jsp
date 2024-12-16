@@ -9,36 +9,51 @@
 
 <jsp:include page="${component}/common_imports.jsp" />
 
+<style type="text/css">
+.vw30 {
+	width: 30vw
+}
+</style>
+
+</head>
+
 <body class="vh-100">
 
-	<main class="form-signin m-5 text-center ">
-		<form action="${root}/login" method="post">
-			<h1 class="h3 mb-3 fw-normal">會員登入</h1>
-			<div class="form-floating">
-				<input type="email" class="form-control" placeholder="#"
-					id="emailInput" name="email" required> <label>信箱</label>
-			</div>
-			<div class="form-floating">
-				<input type="text" class="form-control" id="passwordInput"
-					placeholder="Password" name="password" required> <label>密碼</label>
-			</div>
-			<div class="checkbox my-3">
-				<label> <input type="checkbox" name="remeberMe"> 記住我
-				</label>
-			</div>
-			<div class="mb-2">
-				<button class="w-25 btn btn-lg btn-primary">登入</button>
-			</div>
-			<div>
+	<main>
+		<div class="d-flex justify-content-center w-100">
+			<div class="form-signin m-5 vw30 text-center">
+				<form action="${root}/login" method="post">
+					<h1 class="h3 mb-3 fw-normal">會員登入</h1>
+					<div class="form-floating">
+						<input type="email" class="form-control" placeholder="#"
+							id="emailInput" name="email" required> <label>信箱</label>
+					</div>
+					<div class="form-floating">
+						<input type="text" class="form-control" id="passwordInput"
+							placeholder="Password" name="password" required> <label>密碼</label>
+					</div>
+					<div class="checkbox my-3">
+						<label> <input type="checkbox" name="remeberMe">
+							記住我
+						</label>
+					</div>
+					<div class="mb-2">
+						<button class="w-25 btn btn-lg btn-primary">登入</button>
+					</div>
+					<div>
 
-				<button class="w-25 btn btn-lg btn-outline-dark" id="cancelBTN">取消</button>
+						<button class="w-25 btn btn-lg btn-outline-dark" id="cancelBTN">取消</button>
 
+					</div>
+
+					<!-- error_message -->
+					<div class="mt-5" style="color: red">${message}</div>
+				</form>
 			</div>
-			<div class="mt-5" style="color: red">${message}</div>
-		</form>
+		</div>
 	</main>
 
-	<div class="text-center m-5">
+	<div class="text-center">
 		快速登入:
 		<button class="btn btn-outline-info fastLogin">Lee(管理員)</button>
 		<button class="btn btn-outline-info fastLogin">Amy</button>
