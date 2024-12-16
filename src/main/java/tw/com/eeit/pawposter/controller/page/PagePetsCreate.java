@@ -16,6 +16,7 @@ public class PagePetsCreate extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath())).forward(request,
 				response);
 	}

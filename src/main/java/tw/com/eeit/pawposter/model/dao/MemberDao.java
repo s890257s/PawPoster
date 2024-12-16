@@ -9,6 +9,7 @@ import java.util.List;
 
 import tw.com.eeit.pawposter.model.bean.Member;
 import tw.com.eeit.pawposter.model.bean.Pet;
+import tw.com.eeit.pawposter.util.DateTool;
 
 /**
  * 只要是跟 Member 資料表有關的任何互動，都要寫在此 Dao 之中。<br>
@@ -27,21 +28,24 @@ public class MemberDao {
 		this.conn = conn;
 	}
 
+	/* === Read === */
+
 	/**
 	 * 根據 member Id 取得指定 member 的所有資料。
 	 * <p>
 	 * 
-	 * @return Member 的資料載體，裡面有 member 的所有資料； 若 Id 不存在則回傳無資料 Member 物件。
+	 * @return Member 的資料載體，裡面有 member 的所有資料； 若 Id 不存在則拋錯。
 	 */
 	public Member findMemberById(Integer memberId) throws SQLException {
 		final String SQL = "SELECT * FROM [paw_poster].[dbo].[member] WHERE [member_id] = ?";
-		Member member = new Member();
+		Member member = null;
 
 		PreparedStatement ps = conn.prepareStatement(SQL);
 		ps.setInt(1, memberId);
 
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
+			member = new Member();
 			member.setMemberId(rs.getInt("member_id"));
 			member.setEmail(rs.getString("email"));
 			member.setPassword(rs.getString("password"));
@@ -52,6 +56,10 @@ public class MemberDao {
 		}
 		rs.close();
 		ps.close();
+
+		if (member == null) {
+			throw new RuntimeException("找不到指定的 member。member_id: %s".formatted(memberId));
+		}
 
 		return member;
 	}
@@ -99,7 +107,7 @@ public class MemberDao {
 		ps.close();
 
 		if (member == null) {
-			member = new Member();
+			throw new RuntimeException("找不到指定的 member。member_id: %s".formatted(memberId));
 		}
 
 		return member;
@@ -192,7 +200,7 @@ public class MemberDao {
 	 */
 	public Member findMemberByEmailAndPassword(String email, String password) throws SQLException {
 		final String SQL = "SELECT * FROM [paw_poster].[dbo].[member] WHERE [email] COLLATE Latin1_General_CS_AS = ? AND [password] COLLATE Latin1_General_CS_AS = ?";
-		Member member = new Member();
+		Member member = null;
 
 		PreparedStatement ps = conn.prepareStatement(SQL);
 		ps.setString(1, email);
@@ -201,6 +209,7 @@ public class MemberDao {
 		ResultSet rs = ps.executeQuery();
 
 		if (rs.next()) {
+			member = new Member();
 			member.setMemberId(rs.getInt("member_id"));
 			member.setEmail(rs.getString("email"));
 			member.setPassword(rs.getString("password"));
@@ -209,14 +218,95 @@ public class MemberDao {
 			member.setMemberBirthDate(rs.getDate("member_birth_date"));
 			member.setMemberPhoto(rs.getString("member_photo"));
 		}
-
 		rs.close();
 		ps.close();
+
 		return member;
 	}
 
+	/**
+	 * 計算 member 表格的資料數量
+	 */
+	public Integer countMember() throws SQLException {
+		final String SQL = "SELECT COUNT(*) FROM [paw_poster].[dbo].[member]";
+
+		PreparedStatement ps = conn.prepareStatement(SQL);
+		ResultSet rs = ps.executeQuery();
+		rs.next(); // 此查詢必定會有回傳結果
+
+		int count = rs.getInt(1);
+
+		rs.close();
+		ps.close();
+
+		return count;
+	}
+
+	/* === Create === */
+
+	/**
+	 * 新增 member
+	 */
+	public void insertMember(Member member) throws SQLException {
+		final String SQL = """
+				INSERT INTO [paw_poster].[dbo].[member]
+						([email],
+						 [password],
+						 [enabled],
+						 [member_name],
+						 [member_birth_date],
+						 [member_photo])
+					   VALUES(?, ?, ?, ?, ?, ?) """;
+
+		PreparedStatement ps = conn.prepareStatement(SQL);
+		ps.setString(1, member.getEmail());
+		ps.setString(2, member.getPassword());
+		ps.setBoolean(3, member.getEnabled());
+		ps.setString(4, member.getMemberName());
+		ps.setDate(5, DateTool.convertUtilToSqlDate(member.getMemberBirthDate()));
+		ps.setString(6, member.getMemberPhoto());
+
+		ps.execute();
+		ps.close();
+	}
+
+	/**
+	 * 新增 members
+	 */
+	public void insertMembers(List<Member> members) throws SQLException {
+		final String SQL = """
+				INSERT INTO [paw_poster].[dbo].[member]
+						([email],
+						 [password],
+						 [enabled],
+						 [member_name],
+						 [member_birth_date],
+						 [member_photo])
+					   VALUES(?, ?, ?, ?, ?, ?) """;
+		PreparedStatement ps = conn.prepareStatement(SQL);
+
+		for (Member member : members) {
+			ps.setString(1, member.getEmail());
+			ps.setString(2, member.getPassword());
+			ps.setBoolean(3, member.getEnabled());
+			ps.setString(4, member.getMemberName());
+			ps.setDate(5, DateTool.convertUtilToSqlDate(member.getMemberBirthDate()));
+			ps.setString(6, member.getMemberPhoto());
+			ps.addBatch();
+		}
+
+		ps.executeBatch();
+		ps.close();
+	}
+
+	/* === Update === */
+
+	/**
+	 * 修改指定 memberId 的 status 狀態。
+	 */
 	public void updateEnabledById(Integer memberId, Boolean status) throws SQLException {
 		final String SQL = "UPDATE [paw_poster].[dbo].[member] SET [enabled] = ? WHERE [member_id] = ?";
+
 		PreparedStatement ps = conn.prepareStatement(SQL);
 		ps.setBoolean(1, status);
 		ps.setInt(2, memberId);

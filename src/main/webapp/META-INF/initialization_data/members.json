@@ -6,24 +6,7 @@
     "enabled": "true",
     "memberName": "Lee",
     "memberBirthDate": "1998/09/14",
-    "memberPhoto": "user-type-B-01",
-    "pets": [
-      {
-        "petType": "dog",
-        "petName": "Cookie",
-        "petBirthDate": "2021/11/30"
-      },
-      {
-        "petType": "dog",
-        "petName": "Max",
-        "petBirthDate": "2022/02/16"
-      },
-      {
-        "petType": "cat",
-        "petName": "Happy",
-        "petBirthDate": "2020/07/29"
-      }
-    ]
+    "memberPhoto": "user-type-B-01.png"
   },
   {
     "memberId": "2",
@@ -32,19 +15,7 @@
     "enabled": "true",
     "memberName": "Amy",
     "memberBirthDate": "1992/01/19",
-    "memberPhoto": "user-type-B-02",
-    "pets": [
-      {
-        "petType": "rabbit",
-        "petName": "芒果",
-        "petBirthDate": "2021/01/11"
-      },
-      {
-        "petType": "rat",
-        "petName": "樂樂",
-        "petBirthDate": "2021/04/08"
-      }
-    ]
+    "memberPhoto": "user-type-B-02.png"
   },
   {
     "memberId": "3",
@@ -53,24 +24,7 @@
     "enabled": "true",
     "memberName": "Nick",
     "memberBirthDate": "1997/07/04",
-    "memberPhoto": "user-type-B-03",
-    "pets": [
-      {
-        "petType": "dog",
-        "petName": "天天",
-        "petBirthDate": "2022/02/26"
-      },
-      {
-        "petType": "dog",
-        "petName": "包子",
-        "petBirthDate": "2022/03/10"
-      },
-      {
-        "petType": "cat",
-        "petName": "布丁",
-        "petBirthDate": "2019/01/04"
-      }
-    ]
+    "memberPhoto": "user-type-B-03.png"
   },
   {
     "memberId": "4",
@@ -79,19 +33,7 @@
     "enabled": "true",
     "memberName": "Elisa",
     "memberBirthDate": "1999/02/16",
-    "memberPhoto": "user-type-B-04",
-    "pets": [
-      {
-        "petType": "cat",
-        "petName": "皮皮",
-        "petBirthDate": "2020/03/23"
-      },
-      {
-        "petType": "cat",
-        "petName": "胖胖",
-        "petBirthDate": "2020/08/28"
-      }
-    ]
+    "memberPhoto": "user-type-B-04.png"
   },
   {
     "memberId": "5",
@@ -100,24 +42,7 @@
     "enabled": "true",
     "memberName": "Bob",
     "memberBirthDate": "1969/09/03",
-    "memberPhoto": "user-type-B-05",
-    "pets": [
-      {
-        "petType": "rabbit",
-        "petName": "咩咩",
-        "petBirthDate": "2019/04/01"
-      },
-      {
-        "petType": "dog",
-        "petName": "錢錢",
-        "petBirthDate": "2021/11/22"
-      },
-      {
-        "petType": "rabbit",
-        "petName": "控肉",
-        "petBirthDate": "2021/10/30"
-      }
-    ]
+    "memberPhoto": "user-type-B-05.png"
   },
   {
     "memberId": "6",
@@ -126,14 +51,7 @@
     "enabled": "true",
     "memberName": "John",
     "memberBirthDate": "2003/11/12",
-    "memberPhoto": "user-type-B-06",
-    "pets": [
-      {
-        "petType": "rat",
-        "petName": "糖糖",
-        "petBirthDate": "2022/06/17"
-      }
-    ]
+    "memberPhoto": "user-type-B-06.png"
   },
   {
     "memberId": "7",
@@ -142,19 +60,7 @@
     "enabled": "true",
     "memberName": "Jenny",
     "memberBirthDate": "1998/10/19",
-    "memberPhoto": "user-type-B-07",
-    "pets": [
-      {
-        "petType": "cat",
-        "petName": "Oreo",
-        "petBirthDate": "2023/09/21"
-      },
-      {
-        "petType": "dog",
-        "petName": "黑輪",
-        "petBirthDate": "2023/12/10"
-      }
-    ]
+    "memberPhoto": "user-type-B-07.png"
   },
   {
     "memberId": "8",
@@ -163,19 +69,7 @@
     "enabled": "true",
     "memberName": "Lydia",
     "memberBirthDate": "2002/02/18",
-    "memberPhoto": "user-type-B-08",
-    "pets": [
-      {
-        "petType": "dog",
-        "petName": "米粒",
-        "petBirthDate": "2021/11/30"
-      },
-      {
-        "petType": "cat",
-        "petName": "可樂",
-        "petBirthDate": "2020/03/27"
-      }
-    ]
+    "memberPhoto": "user-type-B-08.png"
   },
   {
     "memberId": "9",
@@ -184,19 +78,7 @@
     "enabled": "true",
     "memberName": "Leo",
     "memberBirthDate": "1989/08/21",
-    "memberPhoto": "user-type-B-09",
-    "pets": [
-      {
-        "petType": "cat",
-        "petName": "麻糬",
-        "petBirthDate": "2019/06/04"
-      },
-      {
-        "petType": "dog",
-        "petName": "阿毛",
-        "petBirthDate": "2022/02/02"
-      }
-    ]
+    "memberPhoto": "user-type-B-09.png"
   },
   {
     "memberId": "10",
@@ -205,7 +87,6 @@
     "enabled": "false",
     "memberName": "Peggie",
     "memberBirthDate": "1996/02/19",
-    "memberPhoto": "user-type-B-10",
-    "pets": []
+    "memberPhoto": "user-type-B-10.png"
   }
 ]

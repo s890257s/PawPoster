@@ -28,6 +28,8 @@ public class PetDao {
 		this.conn = conn;
 	}
 
+	/* === Read === */
+
 	/**
 	 * 根據 pet id 取得指定 pet 的所有資料。
 	 * <p>
@@ -146,6 +148,26 @@ public class PetDao {
 	}
 
 	/**
+	 * 計算 pet 表格的資料數量
+	 */
+	public Integer countPet() throws SQLException {
+		final String SQL = "SELECT COUNT(*) FROM [paw_poster].[dbo].[pet]";
+
+		PreparedStatement ps = conn.prepareStatement(SQL);
+		ResultSet rs = ps.executeQuery();
+		rs.next(); // 此查詢必定會有回傳結果
+
+		int count = rs.getInt(1);
+
+		rs.close();
+		ps.close();
+
+		return count;
+	}
+
+	/* === Create === */
+
+	/**
 	 * 新增 pet。
 	 */
 	public void insertPet(Pet pet) throws SQLException {
@@ -163,16 +185,27 @@ public class PetDao {
 	}
 
 	/**
-	 * 根據 petId 刪除指定的 pet。
+	 * 新增 pets。
 	 */
-	public void deletePetById(Integer petId) throws SQLException {
-		final String SQL = "DELETE FROM [paw_poster].[dbo].[pet] WHERE [pet_id] = ?";
+	public void insertPets(List<Pet> pets) throws SQLException {
+		final String SQL = "INSERT INTO [paw_poster].[dbo].[pet]([pet_name], [pet_type], [pet_birth_date], [pet_photo], [member_id]) VALUES(?, ?, ?, ?, ?)";
 
 		PreparedStatement ps = conn.prepareStatement(SQL);
-		ps.setInt(1, petId);
-		ps.execute();
+
+		for (Pet pet : pets) {
+			ps.setString(1, pet.getPetName());
+			ps.setString(2, pet.getPetType());
+			ps.setDate(3, new Date(pet.getPetBirthDate().getTime()));
+			ps.setBytes(4, pet.getPetPhoto());
+			ps.setInt(5, pet.getMember().getMemberId());
+			ps.addBatch();
+		}
+
+		ps.executeBatch();
 		ps.close();
 	}
+
+	/* === Update === */
 
 	/**
 	 * 修改指定 pet 資訊。
@@ -196,6 +229,20 @@ public class PetDao {
 		ps.setInt(5, petId);
 
 		ps.executeUpdate();
+		ps.close();
+	}
+
+	/* === Delete === */
+
+	/**
+	 * 根據 petId 刪除指定的 pet。
+	 */
+	public void deletePetById(Integer petId) throws SQLException {
+		final String SQL = "DELETE FROM [paw_poster].[dbo].[pet] WHERE [pet_id] = ?";
+
+		PreparedStatement ps = conn.prepareStatement(SQL);
+		ps.setInt(1, petId);
+		ps.execute();
 		ps.close();
 	}
 

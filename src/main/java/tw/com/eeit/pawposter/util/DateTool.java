@@ -13,4 +13,8 @@ public class DateTool {
 		defaultDate.setTime(0);
 		return defaultDate;
 	}
+
+	public static java.sql.Date convertUtilToSqlDate(java.util.Date date) {
+		return new java.sql.Date(date.getTime());
+	}
 }
