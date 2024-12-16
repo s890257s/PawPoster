@@ -1,33 +1,36 @@
 package tw.com.eeit.pawposter.model.bean;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import tw.com.eeit.pawposter.util.DateTool;
 
 public class Member {
 
-	private int mID;
+	private Integer memberId;
 	private String email;
 	private String password;
-	private boolean enabled;
-	private String level;
-	private String mName;
-	private int mAge;
-	private String address;
-	private String mPhoto;
-	private List<Pet> pets;
+	private Boolean enabled;
+	private String memberName;
+	private Date memberBirthDate = DateTool.getDefaultDate();
+	private String memberPhoto;
+	private List<Pet> pets = new ArrayList<>();
 
 	public Member() {
 	}
 
-	public Member(int mID) {
-		this.mID = mID;
+	public Member(Integer memberId) {
+		super();
+		this.memberId = memberId;
 	}
 
-	public int getmID() {
-		return mID;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setmID(int mID) {
-		this.mID = mID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getEmail() {
@@ -46,52 +49,36 @@ public class Member {
 		this.password = password;
 	}
 
-	public boolean getEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	public String getLevel() {
-		return level;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setLevel(String level) {
-		this.level = level;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
-	public String getmName() {
-		return mName;
+	public Date getMemberBirthDate() {
+		return memberBirthDate;
 	}
 
-	public void setmName(String mName) {
-		this.mName = mName;
+	public void setMemberBirthDate(Date memberBirthDate) {
+		this.memberBirthDate = memberBirthDate;
 	}
 
-	public int getmAge() {
-		return mAge;
+	public String getMemberPhoto() {
+		return memberPhoto;
 	}
 
-	public void setmAge(int mAge) {
-		this.mAge = mAge;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getmPhoto() {
-		return mPhoto;
-	}
-
-	public void setmPhoto(String mPhoto) {
-		this.mPhoto = mPhoto;
+	public void setMemberPhoto(String memberPhoto) {
+		this.memberPhoto = memberPhoto;
 	}
 
 	public List<Pet> getPets() {
@@ -104,9 +91,10 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [mID=" + mID + ", email=" + email + ", password=" + password + ", enabled=" + enabled
-				+ ", level=" + level + ", mName=" + mName + ", mAge=" + mAge + ", address=" + address + ", pets=" + pets
-				+ "]";
+		return "Member [memberId=" + memberId + ", email=" + email + ", password=" + password + ", enabled=" + enabled
+				+ ", memberName=" + memberName + ", memberBirthDate=" + memberBirthDate + ", memberPhoto=" + memberPhoto
+				+ ", pets=" + pets + "]";
 	}
 
+	
 }

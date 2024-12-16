@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.pawposter.util.PathConverter;
 
-@WebServlet("/profile")
-public class ToProfile extends HttpServlet {
+@WebServlet("/page/pets")
+public class PagePets extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath())).forward(request,
-				response);
+		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath()))
+		.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

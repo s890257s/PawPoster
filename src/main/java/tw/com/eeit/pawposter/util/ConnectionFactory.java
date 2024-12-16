@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 public class ConnectionFactory {
 
 	/**
-	 * 使用JNDI尋找DataSource，取得連線物件後回傳
+	 * 使用 JNDI 尋找 DataSource，取得連線物件後回傳
 	 * 
 	 * @return Connection 連線物件
 	 */

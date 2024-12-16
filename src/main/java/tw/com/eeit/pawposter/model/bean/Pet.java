@@ -1,76 +1,64 @@
 package tw.com.eeit.pawposter.model.bean;
 
+import java.util.Date;
+
+import tw.com.eeit.pawposter.util.DateTool;
+
 public class Pet {
 
-	private int pID;
-	private String type;
-	private String pName;
-	private int pAge;
-	private byte[] pPhoto;
-	private Member member;
-	private String pPhotoBase64;
+	private Integer petId;
+	private String petType;
+	private String petName;
+	private Date petBirthDate = DateTool.getDefaultDate();
+	private byte[] petPhoto = new byte[0];
+	private Member member = new Member();
+	private String petPhotoBase64;
 
 	public Pet() {
 	}
 
-	public Pet(String pName, String type, int pAge, byte[] pPhoto) {
-		this.pName = pName;
-		this.type = type;
-		this.pAge = pAge;
-		this.pPhoto = pPhoto;
+	public Pet(Integer petId) {
+		this.petId = petId;
 	}
 
-	public Pet(String pName, String type, int pAge, byte[] pPhoto, Member member) {
-		this.pName = pName;
-		this.type = type;
-		this.pAge = pAge;
-		this.pPhoto = pPhoto;
-		this.member = member;
+	public Integer getPetId() {
+		return petId;
 	}
 
-	public Pet(int pID) {
-		super();
-		this.pID = pID;
+	public void setPetId(Integer petId) {
+		this.petId = petId;
 	}
 
-	public int getpID() {
-		return pID;
+	public String getPetType() {
+		return petType;
 	}
 
-	public void setpID(int pID) {
-		this.pID = pID;
+	public void setPetType(String petType) {
+		this.petType = petType;
 	}
 
-	public String getType() {
-		return type;
+	public String getPetName() {
+		return petName;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setPetName(String petName) {
+		this.petName = petName;
 	}
 
-	public String getpName() {
-		return pName;
+	public Date getPetBirthDate() {
+		return petBirthDate;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setPetBirthDate(Date petBirthDate) {
+		this.petBirthDate = petBirthDate;
 	}
 
-	public int getpAge() {
-		return pAge;
+	public byte[] getPetPhoto() {
+		return petPhoto;
 	}
 
-	public void setpAge(int pAge) {
-		this.pAge = pAge;
-	}
-
-	public byte[] getpPhoto() {
-		return pPhoto;
-	}
-
-	public void setpPhoto(byte[] pPhoto) {
-		this.pPhoto = pPhoto;
+	public void setPetPhoto(byte[] petPhoto) {
+		this.petPhoto = petPhoto;
 	}
 
 	public Member getMember() {
@@ -81,18 +69,12 @@ public class Pet {
 		this.member = member;
 	}
 
-	public String getpPhotoBase64() {
-		return pPhotoBase64;
+	public String getPetPhotoBase64() {
+		return petPhotoBase64;
 	}
 
-	public void setpPhotoBase64(String pPhotoBase64) {
-		this.pPhotoBase64 = pPhotoBase64;
-	}
-
-	@Override
-	public String toString() {
-		return "Pet [pID=" + pID + ", type=" + type + ", pName=" + pName + ", pAge=" + pAge + ", member="
-				+ member.getmName() + "]";
+	public void setPetPhotoBase64(String petPhotoBase64) {
+		this.petPhotoBase64 = petPhotoBase64;
 	}
 
 }

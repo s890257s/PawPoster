@@ -1,0 +1,103 @@
+[
+  {
+    "likeId": "1",
+    "createDate": "2023/03/15",
+    "member": {
+      "memberId": 1
+    },
+    "pet": {
+      "petId": 1
+    }
+  },
+  {
+    "likeId": "2",
+    "createDate": "2023/03/13",
+    "member": {
+      "memberId": 1
+    },
+    "pet": {
+      "petId": 2
+    }
+  },
+  {
+    "likeId": "3",
+    "createDate": "2023/03/12",
+    "member": {
+      "memberId": 2
+    },
+    "pet": {
+      "petId": 3
+    }
+  },
+  {
+    "likeId": "4",
+    "createDate": "2023/03/20",
+    "f_mID": "5",
+    "member": {
+      "memberId": 8
+    },
+    "pet": {
+      "petId": 3
+    }
+  },
+  {
+    "likeId": "5",
+    "createDate": "2023/03/20",
+    "member": {
+      "memberId": 3
+    },
+    "pet": {
+      "petId": 3
+    }
+  },
+  {
+    "likeId": "6",
+    "createDate": "2023/03/21",
+    "member": {
+      "memberId": 7
+    },
+    "pet": {
+      "petId": 4
+    }
+  },
+  {
+    "likeId": "7",
+    "createDate": "2023/03/22",
+    "member": {
+      "memberId": 8
+    },
+    "pet": {
+      "petId": 5
+    }
+  },
+  {
+    "likeId": "8",
+    "createDate": "2023/03/23",
+    "member": {
+      "memberId": 8
+    },
+    "pet": {
+      "petId": 6
+    }
+  },
+  {
+    "likeId": "9",
+    "createDate": "2023/03/24",
+    "member": {
+      "memberId": 9
+    },
+    "pet": {
+      "petId": 6
+    }
+  },
+  {
+    "likeId": "10",
+    "createDate": "2023/03/25",
+    "member": {
+      "memberId": 10
+    },
+    "pet": {
+      "petId": 7
+    }
+  }
+]

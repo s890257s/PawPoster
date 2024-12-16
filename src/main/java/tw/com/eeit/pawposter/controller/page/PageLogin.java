@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.pawposter.util.PathConverter;
 
-@WebServlet("/login")
-public class ToLogin extends HttpServlet {
+@WebServlet("/page/login")
+public class PageLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

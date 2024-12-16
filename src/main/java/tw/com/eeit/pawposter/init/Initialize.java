@@ -5,10 +5,10 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.List;
 
@@ -21,8 +21,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import tw.com.eeit.pawposter.model.bean.Likes;
 import tw.com.eeit.pawposter.model.bean.Member;
+import tw.com.eeit.pawposter.model.bean.MemberPetLike;
 import tw.com.eeit.pawposter.model.bean.Pet;
 import tw.com.eeit.pawposter.util.ConnectionFactory;
 
@@ -54,9 +54,10 @@ public class Initialize implements ServletContextListener {
 
 	}
 
+	/* === 若 paw_poster 資料庫不存在則建立 === */
 	private void createDB(Connection conn) throws SQLException {
-		// 如果PawPoster資料庫不存在，則建立PawPoster資料庫
-		String SQL = "IF DB_ID('PawPoster') IS NULL CREATE DATABASE PawPoster";
+
+		String SQL = "IF DB_ID('paw_poster') IS NULL CREATE DATABASE paw_poster";
 
 		Statement state = conn.createStatement();
 		state.execute(SQL);
@@ -64,124 +65,141 @@ public class Initialize implements ServletContextListener {
 	}
 
 	private void createTableAndInsertData(Connection conn) throws Exception {
-		// 如果Member資料表不存在，則建立Member資料表
-		String SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Member]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[Member]("
-				+ " [mID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [email] [nvarchar](50) NOT NULL,"
-				+ " [password] [nvarchar](50) NOT NULL," + " [enabled] [bit] NOT NULL,"
-				+ " [level] [nvarchar](10) NOT NULL," + " [mName] [nvarchar](10)," + " [mAge] [int],"
-				+ " [address] [nvarchar](50)," + " [mPhoto] [nvarchar](max)" + ")";
+		String SQL;
+		Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
+
+		/* === 若 member 表格不存在則建立 === */
+		SQL = """
+				IF OBJECT_ID('[paw_poster].[dbo].[member]') IS NULL
+				CREATE TABLE [paw_poster].[dbo].[member] (
+					[member_id] [int] IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+					[email] [nvarchar](50) NOT NULL,
+					[password] [nvarchar](50) NOT NULL,
+					[enabled] [bit] NOT NULL,
+					[member_name] [nvarchar](10),
+					[member_birth_date] [date],
+					[member_photo] [nvarchar](max));
+				""";
+
 		Statement state = conn.createStatement();
 		state.execute(SQL);
 		state.close();
 
-		// 如果Pet資料表不存在，則建立Pet資料表
-		SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Pet]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[Pet]("
-				+ " [pID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [type] [nvarchar](50) NOT NULL,"
-				+ " [pName] [nvarchar](50)," + " [pAge] [int]," + " [pPhoto] [varbinary](max),"
-				+ " [mID] [int] FOREIGN KEY REFERENCES [PawPoster].[dbo].[Member]([mID])" + ")";
+		/* === 若 pet 表格不存在則建立 === */
+		SQL = """
+				IF OBJECT_ID('[paw_poster].[dbo].[pet]') IS NULL
+				CREATE TABLE [paw_poster].[dbo].[pet] (
+					[pet_id] [int] IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+					[pet_type] [nvarchar](50) NOT NULL,
+					[pet_name] [nvarchar](50),
+					[pet_birth_date] [date],
+					[pet_photo] [varbinary](max),
+					[member_id] [int] FOREIGN KEY REFERENCES [paw_poster].[dbo].[member]([member_id]));
+				""";
 		state = conn.createStatement();
 		state.execute(SQL);
 		state.close();
 
-		// 如果Likes資料表不存在，則建立Likes資料表
-		SQL = "IF OBJECT_ID('[PawPoster].[dbo].[Likes]') IS NULL " + "CREATE TABLE [PawPoster].[dbo].[Likes]("
-				+ " [lID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL," + " [time] [datetime] NOT NULL,"
-				+ " [mID] [int] FOREIGN KEY REFERENCES [PawPoster].[dbo].[Member]([mID]),"
-				+ " [pID] [int] FOREIGN KEY REFERENCES [PawPoster].[dbo].[Pet]([pID])" + ")";
+		/* === 若 member_pet_like 表格不存在則建立 === */
+		SQL = """
+				IF OBJECT_ID('[paw_poster].[dbo].[member_pet_like]') IS NULL
+				CREATE TABLE [paw_poster].[dbo].[member_pet_like] (
+					[like_id] [int] IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+					[create_date] [date] NOT NULL,
+					[member_id] [int] FOREIGN KEY REFERENCES [paw_poster].[dbo].[member]([member_id]),
+					[pet_id] [int] FOREIGN KEY REFERENCES [paw_poster].[dbo].[pet]([pet_id]));
+				""";
 		state = conn.createStatement();
 		state.execute(SQL);
 		state.close();
 
-		// 如果Member資料表中沒有任何一筆資料，則新增。
-		if (!conn.createStatement().executeQuery("SELECT [mID] FROM [PawPoster].[dbo].[Member]").next()) {
-			// 使用Gson、JavaIO，讀取webapp/META-INF/initialization_data/Member.json的資料
-			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "Member.json"));
-			List<Member> mList = new Gson().fromJson(br, new TypeToken<List<Member>>() {
+		/* === 若 member 表格中沒有任何一筆資料則新增 === */
+		if (!conn.createStatement().executeQuery("SELECT [member_id] FROM [paw_poster].[dbo].[member]").next()) {
+			// 使用 Gson、JavaIO，讀取 webapp/META-INF/initialization_data/members.json 的資料
+			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "members.json"));
+			List<Member> members = gson.fromJson(br, new TypeToken<List<Member>>() {
 			}.getType());
 			br.close();
 
-			SQL = "INSERT INTO [PawPoster].[dbo].[Member] ([email], [password], [enabled], [level], [mName], [mAge], [address], [mPhoto]) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			SQL = "INSERT INTO [paw_poster].[dbo].[member] ([email], [password], [enabled], [member_name], [member_birth_date], [member_photo]) VALUES (?, ?, ?, ?, ?, ?)";
 
 			// 新增資料到資料表
-			PreparedStatement preState = conn.prepareStatement(SQL);
-			for (Member m : mList) {
-				preState.setString(1, m.getEmail());
-				preState.setString(2, m.getPassword());
-				preState.setBoolean(3, m.getEnabled());
-				preState.setString(4, m.getLevel());
-				preState.setString(5, m.getmName());
-				preState.setInt(6, m.getmAge());
-				preState.setString(7, m.getAddress());
+			PreparedStatement ps = conn.prepareStatement(SQL);
+			for (Member m : members) {
+				ps.setString(1, m.getEmail());
+				ps.setString(2, m.getPassword());
+				ps.setBoolean(3, m.getEnabled());
+				ps.setString(4, m.getMemberName());
+				ps.setDate(5, new Date(m.getMemberBirthDate().getTime()));
 
 				BufferedInputStream bis = new BufferedInputStream(
-						new FileInputStream(INITIALIZATION_DATA_PATH + "/photo/user/" + m.getmPhoto() + ".png"));
+						new FileInputStream(INITIALIZATION_DATA_PATH + "/photo/user/" + m.getMemberPhoto() + ".png"));
 				String base64Photo = "data:image/png;base64," + Base64.getEncoder().encodeToString(bis.readAllBytes());
 				bis.close();
 
-				preState.setString(8, base64Photo);
-				preState.addBatch();
+				ps.setString(6, base64Photo);
+				ps.addBatch();
 			}
-			preState.executeBatch();
-			preState.close();
+			ps.executeBatch();
+			ps.close();
 		}
 
-		// 如果Pet資料表中沒有任何一筆資料，則新增。
-		if (!conn.createStatement().executeQuery("SELECT [pID] FROM [PawPoster].[dbo].[Pet]").next()) {
-			// 使用Gson、JavaIO，讀取webapp/META-INF/initialization_data/Member.json的資料(內含Pet資訊)
-			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "Member.json"));
-			List<Member> mList = new Gson().fromJson(br, new TypeToken<List<Member>>() {
+		/* === 若 pet 表格中沒有任何一筆資料則新增 === */
+		if (!conn.createStatement().executeQuery("SELECT [pet_id] FROM [paw_poster].[dbo].[pet]").next()) {
+			// 使用 Gson，讀取 webapp/META-INF/initialization_data/members.json 的資料(內含 pet 資訊)
+			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "members.json"));
+			List<Member> members = gson.fromJson(br, new TypeToken<List<Member>>() {
 			}.getType());
 			br.close();
 
-			SQL = "INSERT INTO [PawPoster].[dbo].[Pet] ([type], [pName], [pAge], [pPhoto], [mID]) VALUES (?, ?, ?, ?, ?)";
+			SQL = "INSERT INTO [paw_poster].[dbo].[pet] ([pet_type], [pet_name], [pet_birth_date], [pet_photo], [member_id]) VALUES (?, ?, ?, ?, ?)";
 
-			PreparedStatement preState = conn.prepareStatement(SQL);
+			PreparedStatement ps = conn.prepareStatement(SQL);
 
 			// 第一個迴圈讀取所有使用者，第二個迴圈讀取使用者的寵物
-			for (Member m : mList) {
+			for (Member m : members) {
 				for (Pet p : m.getPets()) {
-					preState.setString(1, p.getType());
-					preState.setString(2, p.getpName());
-					preState.setInt(3, p.getpAge());
+					ps.setString(1, p.getPetType());
+					ps.setString(2, p.getPetName());
+					ps.setDate(3, new Date(p.getPetBirthDate().getTime()));
 
 					BufferedInputStream bis = new BufferedInputStream(new FileInputStream(INITIALIZATION_DATA_PATH
-							+ "/photo/" + p.getType() + "/" + p.getType() + "-" + p.getpName() + ".jpg"));
+							+ "/photo/" + p.getPetType() + "/" + p.getPetType() + "-" + p.getPetName() + ".jpg"));
 					byte[] b = bis.readAllBytes();
 					bis.close();
-					preState.setBytes(4, b);
+					ps.setBytes(4, b);
 
-					preState.setInt(5, m.getmID());
-					preState.addBatch();
+					ps.setInt(5, m.getMemberId());
+					ps.addBatch();
 				}
 
 			}
-			preState.executeBatch();
-			preState.close();
+			ps.executeBatch();
+			ps.close();
 		}
 
-		// 如果Likes資料表中沒有任何一筆資料，則新增。
-		if (!conn.createStatement().executeQuery("SELECT [pID] FROM [PawPoster].[dbo].[Likes]").next()) {
-			Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd HH:mm").create();
+		/* === 若 member_pet_like 表格中沒有任何一筆資料則新增 === */
+		if (!conn.createStatement().executeQuery("SELECT [like_id] FROM [paw_poster].[dbo].[member_pet_like]").next()) {
 
-			// 使用Gson、JavaIO，讀取webapp/META-INF/initialization_data/Likes.json的資料
-			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "Likes.json"));
-			List<Likes> lList = gson.fromJson(br, new TypeToken<List<Likes>>() {
+			// 使用 Gson、JavaIO，讀取 webapp/META-INF/initialization_data/likes.json 的資料
+			BufferedReader br = new BufferedReader(new FileReader(INITIALIZATION_DATA_PATH + "likes.json"));
+			List<MemberPetLike> memberPetLikes = gson.fromJson(br, new TypeToken<List<MemberPetLike>>() {
 			}.getType());
 			br.close();
 
-			SQL = "INSERT INTO [PawPoster].[dbo].[Likes] ([time], [mID], [pID]) VALUES (?, ?, ?)";
+			SQL = "INSERT INTO [paw_poster].[dbo].[member_pet_like] ([create_date], [member_id], [pet_id]) VALUES (?, ?, ?)";
 
-			PreparedStatement preState = conn.prepareStatement(SQL);
+			PreparedStatement ps = conn.prepareStatement(SQL);
 
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm");
-			for (Likes l : lList) {
-				preState.setString(1, dateFormat.format(l.getTime()));
-				preState.setInt(2, l.getMember().getmID());
-				preState.setInt(3, l.getPet().getpID());
-				preState.addBatch();
+			for (MemberPetLike memberPetLike : memberPetLikes) {
+				ps.setDate(1, new Date(memberPetLike.getCreateDate().getTime()));
+				ps.setInt(2, memberPetLike.getMember().getMemberId());
+				ps.setInt(3, memberPetLike.getPet().getPetId());
+				ps.addBatch();
 			}
-			preState.executeBatch();
-			preState.close();
+
+			ps.executeBatch();
+			ps.close();
 		}
 	}
 

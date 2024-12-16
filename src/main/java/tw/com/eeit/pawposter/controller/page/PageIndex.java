@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.pawposter.util.PathConverter;
 
-@WebServlet("/add_pet")
-public class ToAddPet extends HttpServlet {
+@WebServlet("/page/index")
+public class PageIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath()))
-				.forward(request, response);
+
+		String requestPath = request.getServletPath(); // page/index
+		String convertToWebInfPath = PathConverter.convertToWebInfPath(requestPath); // WEB-INF/view/index.jsp
+		request.getRequestDispatcher(convertToWebInfPath).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
