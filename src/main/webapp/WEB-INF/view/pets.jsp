@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,55 +32,36 @@
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div
-					class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center"
-					id="petHome">
-					<div class="col">
-						<div class="card shadow-sm">
-							<img src="${root}/assets/no_image.png" class="w-100" />
-							<p class="card-text fs-3">寵物名</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<button type="button"
-									class="btn btn-sm btn-outline-secondary m-2">
-									<i class="fa-regular fa-thumbs-up"></i>
-								</button>
-								<div class="m-3">
-									<a href="#">主人名</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center">
 
-					<div class="col">
-						<div class="card shadow-sm">
-							<img src="${root}/assets/no_image.png" class="w-100" />
-							<p class="card-text fs-3">寵物名</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<button type="button"
-									class="btn btn-sm btn-outline-secondary m-2">
-									<i class="fa-regular fa-thumbs-up"></i>
-								</button>
-								<div class="m-3">
-									<a href="#">主人名</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					<c:forEach items="${pets }" var="pet">
+						<div class="col">
+							<div class="card shadow-sm">
+								<img src="${pet.petPhotoBase64 }" class="w-100" />
+								<!-- 寵物名 -->
+								<p class="card-text fs-3">${pet.petName }</p>
+								<div class="d-flex justify-content-between align-items-center">
 
-					<div class="col">
-						<div class="card shadow-sm">
-							<img src="${root}/assets/no_image.png" class="w-100" />
-							<p class="card-text fs-3">寵物名</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<button type="button"
-									class="btn btn-sm btn-outline-secondary m-2">
-									<i class="fa-solid fa-thumbs-up" style="color: #025cf7;"></i>
-								</button>
-								<div class="m-3">
-									<a href="#">主人名</a>
+									<!-- 是否按讚 -->
+									<button type="button"
+										class="btn btn-sm btn-outline-secondary m-2">
+										<c:if test="${!pet.isLiked }">
+											<i class="fa-regular fa-thumbs-up"></i>
+										</c:if>
+										<c:if test="${pet.isLiked }">
+											<i class="fa-solid fa-thumbs-up" style="color: #025cf7;"></i>
+										</c:if>
+									</button>
+
+									<!-- 主人名 -->
+									<div class="m-3">
+										<a href="#">${pet.memberName }</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</c:forEach>
+
 				</div>
 			</div>
 		</div>

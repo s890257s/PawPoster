@@ -1,14 +1,16 @@
 package tw.com.eeit.pawposter.model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import tw.com.eeit.pawposter.model.po.MemberPetLike;
+import tw.com.eeit.pawposter.model.po.Pet;
 import tw.com.eeit.pawposter.util.DateTool;
 
 public class MemberPetLikeDao {
@@ -32,7 +34,7 @@ public class MemberPetLikeDao {
 	 * @param memberId 會員Id。
 	 * @return List<MemberPetLike> 按讚紀錄的集合。
 	 */
-	public List<MemberPetLike> findAllMemberPetLikeByMemberId(Integer memberId) throws SQLException {
+	public List<MemberPetLike> findMemberPetLikeByMemberId(Integer memberId) throws SQLException {
 		final String SQL = "SELECT * FROM [paw_poster].[dbo].[member_pet_like] WHERE [member_id] = ?";
 		PreparedStatement ps = conn.prepareStatement(SQL);
 		ps.setInt(1, memberId);
@@ -93,6 +95,15 @@ public class MemberPetLikeDao {
 		ps.close();
 
 		return count;
+	}
+
+	public Set<Integer> findLikedPetIds(Integer memberId) throws SQLException {
+		List<MemberPetLike> memberPetLikes = findMemberPetLikeByMemberId(memberId);
+
+		Set<Integer> petIds = memberPetLikes.stream().map(MemberPetLike::getPet).map(Pet::getPetId)
+				.collect(Collectors.toSet());
+
+		return petIds;
 	}
 
 	/* === Create === */
