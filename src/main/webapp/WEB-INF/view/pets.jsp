@@ -86,16 +86,7 @@
 	<jsp:include page="${component}/footer.jsp" />
 
 	<script>
-		const likeBtns = document.querySelectorAll(".likeBtn");
-		likeBtns.forEach((btn)=>{
-			btn.addEventListener("click",(e)=>{
-				fetch("${root}/ToggleLike.do?petId="+e.target.dataset.pet_id)
-				.then(rs=>rs.text())
-				.then(message=>{
-					location.reload()
-				})
-			})
-		})
+		
 	</script>
 </body>
 </html>

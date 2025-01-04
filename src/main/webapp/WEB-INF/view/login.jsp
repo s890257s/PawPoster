@@ -73,7 +73,7 @@
 	//快速登入
 	fastLoginBTNs.forEach(button=>{
 		button.addEventListener("click",function(){
-			emailInput.value=this.innerHTML+"@gmail.com";
+			emailInput.value=this.innerHTML+"@mail.com";
 			passwordInput.value=1234;
 		})
 	})
