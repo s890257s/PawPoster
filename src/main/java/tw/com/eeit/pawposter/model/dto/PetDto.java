@@ -1,6 +1,6 @@
 package tw.com.eeit.pawposter.model.dto;
 
-import tw.com.eeit.pawposter.model.po.Pet;
+import tw.com.eeit.pawposter.model.entity.Pet;
 
 public class PetDto {
 

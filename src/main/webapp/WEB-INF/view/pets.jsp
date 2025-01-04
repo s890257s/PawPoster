@@ -42,16 +42,18 @@
 								<p class="card-text fs-3">${pet.petName }</p>
 								<div class="d-flex justify-content-between align-items-center">
 
-									<!-- 是否按讚 -->
-									<button type="button"
-										class="btn btn-sm btn-outline-secondary m-2">
-										<c:if test="${!pet.isLiked }">
-											<i class="fa-regular fa-thumbs-up"></i>
-										</c:if>
-										<c:if test="${pet.isLiked }">
-											<i class="fa-solid fa-thumbs-up" style="color: #025cf7;"></i>
-										</c:if>
-									</button>
+									<c:if test="${loggedInMember!=null }">
+										<!-- 是否按讚 -->
+										<button type="button"
+											class="btn btn-sm btn-outline-secondary m-2">
+											<c:if test="${!pet.isLiked }">
+												<i class="fa-regular fa-thumbs-up"></i>
+											</c:if>
+											<c:if test="${pet.isLiked }">
+												<i class="fa-solid fa-thumbs-up" style="color: #025cf7;"></i>
+											</c:if>
+										</button>
+									</c:if>
 
 									<!-- 主人名 -->
 									<div class="m-3">

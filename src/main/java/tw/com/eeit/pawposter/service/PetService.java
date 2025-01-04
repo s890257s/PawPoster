@@ -9,7 +9,7 @@ import tw.com.eeit.pawposter.model.dao.MemberDao;
 import tw.com.eeit.pawposter.model.dao.MemberPetLikeDao;
 import tw.com.eeit.pawposter.model.dao.PetDao;
 import tw.com.eeit.pawposter.model.dto.PetDto;
-import tw.com.eeit.pawposter.model.po.Pet;
+import tw.com.eeit.pawposter.model.entity.Pet;
 import tw.com.eeit.pawposter.util.ConnectionFactory;
 
 public class PetService {

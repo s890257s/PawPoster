@@ -1,4 +1,4 @@
-package tw.com.eeit.pawposter.model.po;
+package tw.com.eeit.pawposter.model.entity;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

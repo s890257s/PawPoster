@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import tw.com.eeit.pawposter.model.po.MemberPetLike;
-import tw.com.eeit.pawposter.model.po.Pet;
+import tw.com.eeit.pawposter.model.entity.MemberPetLike;
+import tw.com.eeit.pawposter.model.entity.Pet;
 import tw.com.eeit.pawposter.util.DateTool;
 
 public class MemberPetLikeDao {

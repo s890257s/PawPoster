@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import tw.com.eeit.pawposter.model.po.Member;
-import tw.com.eeit.pawposter.model.po.Pet;
+import tw.com.eeit.pawposter.model.entity.Member;
+import tw.com.eeit.pawposter.model.entity.Pet;
 import tw.com.eeit.pawposter.util.DateTool;
 
 /**

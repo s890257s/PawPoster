@@ -19,9 +19,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import tw.com.eeit.pawposter.model.po.Member;
-import tw.com.eeit.pawposter.model.po.MemberPetLike;
-import tw.com.eeit.pawposter.model.po.Pet;
+import tw.com.eeit.pawposter.model.entity.Member;
+import tw.com.eeit.pawposter.model.entity.MemberPetLike;
+import tw.com.eeit.pawposter.model.entity.Pet;
 import tw.com.eeit.pawposter.service.MemberService;
 import tw.com.eeit.pawposter.service.PetService;
 import tw.com.eeit.pawposter.util.ConnectionFactory;

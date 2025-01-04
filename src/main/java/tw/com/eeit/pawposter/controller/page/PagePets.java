@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tw.com.eeit.pawposter.model.dto.PetDto;
-import tw.com.eeit.pawposter.model.po.Member;
+import tw.com.eeit.pawposter.model.entity.Member;
 import tw.com.eeit.pawposter.service.PetService;
 import tw.com.eeit.pawposter.util.AuthTool;
 import tw.com.eeit.pawposter.util.PathConverter;

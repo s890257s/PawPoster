@@ -2,7 +2,7 @@ package tw.com.eeit.pawposter.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import tw.com.eeit.pawposter.model.po.Member;
+import tw.com.eeit.pawposter.model.entity.Member;
 
 public class AuthTool {
 
