@@ -18,14 +18,8 @@ public class ToggleLike extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String petId = request.getParameter("petId");
-		Member loggedInMember = AuthTool.getLoggedInMember(request);
+		// TODO: 實作 ToggleLike
 
-		MemberService memberService = new MemberService();
-		String message = memberService.toggleLike(loggedInMember.getMemberId(), Integer.valueOf(petId));
-
-		response.setContentType("text/plain;charset=UTF-8");
-		response.getWriter().write(message);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

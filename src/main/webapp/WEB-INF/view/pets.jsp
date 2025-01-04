@@ -34,35 +34,47 @@
 				<div
 					class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center">
 
-					<c:forEach items="${pets }" var="pet">
-						<div class="col">
-							<div class="card shadow-sm">
-								<img src="${pet.petPhotoBase64 }" class="w-100" />
-								<!-- 寵物名 -->
-								<p class="card-text fs-3">${pet.petName }</p>
-								<div class="d-flex justify-content-between align-items-center">
+					<div class="col">
+						<div class="card shadow-sm">
+							<img src="${root }/assets/no_image.png" class="w-100" />
+							<!-- 寵物名 -->
+							<p class="card-text fs-3">寵物名稱</p>
+							<div class="d-flex justify-content-between align-items-center">
 
-									<c:if test="${loggedInMember!=null }">
-										<!-- 是否按讚 -->
-										<button type="button" data-pet_id="${pet.petId }"
-											class="btn btn-sm btn-outline-secondary m-2 likeBtn">
-											<c:if test="${!pet.isLiked }">
-												<i class="fa-regular fa-thumbs-up"></i>
-											</c:if>
-											<c:if test="${pet.isLiked }">
-												<i class="fa-solid fa-thumbs-up" style="color: #025cf7;"></i>
-											</c:if>
-										</button>
-									</c:if>
+								<!-- 是否按讚 -->
+								<button type="button"
+									class="btn btn-sm btn-outline-secondary m-2 likeBtn">
+									<i class="fa-regular fa-thumbs-up"></i>
+								</button>
 
-									<!-- 主人名 -->
-									<div class="m-3">
-										<a href="#">${pet.memberName }</a>
-									</div>
+								<!-- 主人名 -->
+								<div class="m-3">
+									<a href="#">主人名</a>
 								</div>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
+
+					<div class="col">
+						<div class="card shadow-sm">
+							<img src="${root }/assets/no_image.png" class="w-100" />
+							<!-- 寵物名 -->
+							<p class="card-text fs-3">寵物名稱</p>
+							<div class="d-flex justify-content-between align-items-center">
+
+								<!-- 是否按讚 -->
+								<button type="button"
+									class="btn btn-sm btn-outline-secondary m-2 likeBtn">
+									<i class="fa-regular fa-thumbs-up"></i>
+								</button>
+
+								<!-- 主人名 -->
+								<div class="m-3">
+									<a href="#">主人名</a>
+								</div>
+							</div>
+						</div>
+					</div>
 
 				</div>
 			</div>
