@@ -82,4 +82,45 @@ public class MemberService {
 		}
 	}
 
+	/* === Update === */
+	public String toggleLike(Integer memberId, Integer petId) {
+		try (Connection conn = ConnectionFactory.getConnection()) {
+			String message = "";
+
+			MemberPetLike memberPetLike = new MemberPetLike(memberId, petId);
+
+			MemberPetLikeDao memberPetLikeDao = new MemberPetLikeDao(conn);
+			Boolean isLiked = memberPetLikeDao.isLikeExist(memberPetLike);
+
+			if (isLiked) {
+				memberPetLikeDao.removeLike(memberPetLike);
+				message = "不讚";
+			} else {
+				memberPetLikeDao.insertLike(memberPetLike);
+				message = "讚";
+			}
+
+			return message;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "";
+		}
+	};
+
+	/* === Other === */
+	public Member login(String email, String password) {
+
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			MemberDao memberDao = new MemberDao(conn);
+			Member member = memberDao.findMemberByEmailAndPassword(email, password);
+
+			return member;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 }

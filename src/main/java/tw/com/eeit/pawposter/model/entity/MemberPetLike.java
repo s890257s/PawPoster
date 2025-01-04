@@ -21,6 +21,11 @@ public class MemberPetLike {
 		this.pet = new Pet(petId);
 	}
 
+	public MemberPetLike(Integer memberId, Integer petId) {
+		this.member.setMemberId(memberId);
+		this.pet.setPetId(petId);
+	}
+
 	public Integer getLikeId() {
 		return likeId;
 	}

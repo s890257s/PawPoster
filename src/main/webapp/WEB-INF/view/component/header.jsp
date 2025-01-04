@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <header class="p-3 mb-3 border-bottom">
 	<div class="container">
 		<div
@@ -14,9 +16,17 @@
 					class="nav-link px-2 link-dark">新增寵物</a></li>
 			</ul>
 			<div class="dropdown text-end">
-				<a href="${root}/page/login">
-					<button class="btn btn-primary">會員登入</button>
-				</a>
+				<c:if test="${loggedInMember == null }">
+					<a href="${root}/page/login">
+						<button class="btn btn-primary">會員登入</button>
+					</a>
+				</c:if>
+
+				<c:if test="${loggedInMember != null }">
+					<span> ${loggedInMember.memberName } </span>
+					<img src="${loggedInMember.memberPhoto }" width="50px">
+					<button class="btn btn-info">登出</button>
+				</c:if>
 			</div>
 		</div>
 	</div>

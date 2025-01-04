@@ -61,7 +61,6 @@ public class MemberPetLikeDao {
 	/**
 	 * 根據 member_id 與 pet_id 尋找會員的單筆按讚紀錄。
 	 * 
-	 * @param memberPetLike 按讚的物件。
 	 * @return true: member 按了 pet 讚，false: member 沒按 pet 讚
 	 */
 	public Boolean isLikeExist(MemberPetLike memberPetLike) throws SQLException {

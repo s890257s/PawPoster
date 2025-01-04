@@ -1,92 +1,92 @@
 [
-  {
-    "memberId": "1",
-    "email": "Lee@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Lee",
-    "memberBirthDate": "1998/09/14",
-    "memberPhoto": "user-type-B-01.png"
-  },
-  {
-    "memberId": "2",
-    "email": "Amy@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Amy",
-    "memberBirthDate": "1992/01/19",
-    "memberPhoto": "user-type-B-02.png"
-  },
-  {
-    "memberId": "3",
-    "email": "Nick@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Nick",
-    "memberBirthDate": "1997/07/04",
-    "memberPhoto": "user-type-B-03.png"
-  },
-  {
-    "memberId": "4",
-    "email": "Elisa@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Elisa",
-    "memberBirthDate": "1999/02/16",
-    "memberPhoto": "user-type-B-04.png"
-  },
-  {
-    "memberId": "5",
-    "email": "Bob@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Bob",
-    "memberBirthDate": "1969/09/03",
-    "memberPhoto": "user-type-B-05.png"
-  },
-  {
-    "memberId": "6",
-    "email": "John@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "John",
-    "memberBirthDate": "2003/11/12",
-    "memberPhoto": "user-type-B-06.png"
-  },
-  {
-    "memberId": "7",
-    "email": "Jenny@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Jenny",
-    "memberBirthDate": "1998/10/19",
-    "memberPhoto": "user-type-B-07.png"
-  },
-  {
-    "memberId": "8",
-    "email": "Lydia@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Lydia",
-    "memberBirthDate": "2002/02/18",
-    "memberPhoto": "user-type-B-08.png"
-  },
-  {
-    "memberId": "9",
-    "email": "Leo@gmail.com",
-    "password": "1234",
-    "enabled": "true",
-    "memberName": "Leo",
-    "memberBirthDate": "1989/08/21",
-    "memberPhoto": "user-type-B-09.png"
-  },
-  {
-    "memberId": "10",
-    "email": "Peggie@gmail.com",
-    "password": "1234",
-    "enabled": "false",
-    "memberName": "Peggie",
-    "memberBirthDate": "1996/02/19",
-    "memberPhoto": "user-type-B-10.png"
-  }
+	{
+		"memberId": "1",
+		"email": "Lee@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Lee",
+		"memberBirthDate": "1998/09/14",
+		"memberPhoto": "user-type-B-01.png"
+	},
+	{
+		"memberId": "2",
+		"email": "Amy@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Amy",
+		"memberBirthDate": "1992/01/19",
+		"memberPhoto": "user-type-B-02.png"
+	},
+	{
+		"memberId": "3",
+		"email": "Nick@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Nick",
+		"memberBirthDate": "1997/07/04",
+		"memberPhoto": "user-type-B-03.png"
+	},
+	{
+		"memberId": "4",
+		"email": "Elisa@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Elisa",
+		"memberBirthDate": "1999/02/16",
+		"memberPhoto": "user-type-B-04.png"
+	},
+	{
+		"memberId": "5",
+		"email": "Bob@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Bob",
+		"memberBirthDate": "1969/09/03",
+		"memberPhoto": "user-type-B-05.png"
+	},
+	{
+		"memberId": "6",
+		"email": "John@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "John",
+		"memberBirthDate": "2003/11/12",
+		"memberPhoto": "user-type-B-06.png"
+	},
+	{
+		"memberId": "7",
+		"email": "Jenny@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Jenny",
+		"memberBirthDate": "1998/10/19",
+		"memberPhoto": "user-type-B-07.png"
+	},
+	{
+		"memberId": "8",
+		"email": "Lydia@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Lydia",
+		"memberBirthDate": "2002/02/18",
+		"memberPhoto": "user-type-B-08.png"
+	},
+	{
+		"memberId": "9",
+		"email": "Leo@mail.com",
+		"password": "1234",
+		"enabled": "true",
+		"memberName": "Leo",
+		"memberBirthDate": "1989/08/21",
+		"memberPhoto": "user-type-B-09.png"
+	},
+	{
+		"memberId": "10",
+		"email": "Peggie@mail.com",
+		"password": "1234",
+		"enabled": "false",
+		"memberName": "Peggie",
+		"memberBirthDate": "1996/02/19",
+		"memberPhoto": "user-type-B-10.png"
+	}
 ]

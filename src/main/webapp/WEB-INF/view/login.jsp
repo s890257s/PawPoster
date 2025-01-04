@@ -22,7 +22,7 @@
 	<main>
 		<div class="d-flex justify-content-center w-100">
 			<div class="form-signin m-5 vw30 text-center">
-				<form action="${root}/login" method="post">
+				<form action="${root}/login.do" method="post">
 					<h1 class="h3 mb-3 fw-normal">會員登入</h1>
 					<div class="form-floating">
 						<input type="email" class="form-control" placeholder="#"
@@ -48,6 +48,7 @@
 
 					<!-- error_message -->
 					<div class="mt-5" style="color: red">${message}</div>
+					${message="" }
 				</form>
 			</div>
 		</div>
@@ -55,7 +56,7 @@
 
 	<div class="text-center">
 		快速登入:
-		<button class="btn btn-outline-info fastLogin">Lee(管理員)</button>
+		<button class="btn btn-outline-info fastLogin">Lee</button>
 		<button class="btn btn-outline-info fastLogin">Amy</button>
 		<button class="btn btn-outline-info fastLogin">Nick</button>
 		<button class="btn btn-outline-info fastLogin">Elisa</button>
@@ -73,11 +74,7 @@
 	//快速登入
 	fastLoginBTNs.forEach(button=>{
 		button.addEventListener("click",function(){
-			if(this.innerHTML=="Lee(管理員)"){
-				emailInput.value="Lee@gmail.com";
-			}else{
-				emailInput.value=this.innerHTML+"@gmail.com";
-			}
+			emailInput.value=this.innerHTML+"@gmail.com";
 			passwordInput.value=1234;
 		})
 	})
