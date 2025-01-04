@@ -111,7 +111,7 @@ public class MemberPetLikeDao {
 	/**
 	 * 新增 memberPetLike。
 	 */
-	public void insertLike(MemberPetLike memberPetLike) throws SQLException {
+	public void createLike(MemberPetLike memberPetLike) throws SQLException {
 		final String SQL = "INSERT INTO [paw_poster].[dbo].[member_pet_like]([create_date], [member_id], [pet_id]) VALUES(?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(SQL);
 		ps.setDate(1, CommonTool.convertUtilToSqlDate(memberPetLike.getCreateDate()));
@@ -124,7 +124,7 @@ public class MemberPetLikeDao {
 	/**
 	 * 新增 memberPetLikes。
 	 */
-	public void insertLikes(List<MemberPetLike> memberPetLikes) throws SQLException {
+	public void createLikes(List<MemberPetLike> memberPetLikes) throws SQLException {
 		final String SQL = "INSERT INTO [paw_poster].[dbo].[member_pet_like]([create_date], [member_id], [pet_id]) VALUES(?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -146,7 +146,7 @@ public class MemberPetLikeDao {
 	 * 
 	 * @param memberPetLike 按讚的物件。
 	 */
-	public void removeLike(MemberPetLike memberPetLike) throws SQLException {
+	public void deleteLike(MemberPetLike memberPetLike) throws SQLException {
 		final String SQL = "DELETE FROM [paw_poster].[dbo].[member_pet_like] WHERE [member_id] = ? AND [pet_id] = ?";
 		PreparedStatement ps = conn.prepareStatement(SQL);
 		ps.setInt(1, memberPetLike.getMember().getMemberId());

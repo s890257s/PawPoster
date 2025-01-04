@@ -170,7 +170,7 @@ public class PetDao {
 	/**
 	 * 新增 pet。
 	 */
-	public void insertPet(Pet pet) throws SQLException {
+	public void createPet(Pet pet) throws SQLException {
 		final String SQL = "INSERT INTO [paw_poster].[dbo].[pet]([pet_name], [pet_type], [pet_birth_date], [pet_photo], [member_id]) VALUES(?, ?, ?, ?, ?)";
 
 		PreparedStatement ps = conn.prepareStatement(SQL);
@@ -187,7 +187,7 @@ public class PetDao {
 	/**
 	 * 新增 pets。
 	 */
-	public void insertPets(List<Pet> pets) throws SQLException {
+	public void createPets(List<Pet> pets) throws SQLException {
 		final String SQL = "INSERT INTO [paw_poster].[dbo].[pet]([pet_name], [pet_type], [pet_birth_date], [pet_photo], [member_id]) VALUES(?, ?, ?, ?, ?)";
 
 		PreparedStatement ps = conn.prepareStatement(SQL);

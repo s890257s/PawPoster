@@ -247,7 +247,7 @@ public class MemberDao {
 	/**
 	 * 新增 member
 	 */
-	public void insertMember(Member member) throws SQLException {
+	public void createMember(Member member) throws SQLException {
 		final String SQL = """
 				INSERT INTO [paw_poster].[dbo].[member]
 						([email],
@@ -273,7 +273,7 @@ public class MemberDao {
 	/**
 	 * 新增 members
 	 */
-	public void insertMembers(List<Member> members) throws SQLException {
+	public void createMembers(List<Member> members) throws SQLException {
 		final String SQL = """
 				INSERT INTO [paw_poster].[dbo].[member]
 						([email],

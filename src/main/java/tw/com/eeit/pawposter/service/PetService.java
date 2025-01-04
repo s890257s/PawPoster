@@ -59,7 +59,7 @@ public class PetService {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			PetDao petDao = new PetDao(conn);
-			petDao.insertPet(pet);
+			petDao.createPet(pet);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class PetService {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			PetDao petDao = new PetDao(conn);
-			petDao.insertPets(pets);
+			petDao.createPets(pets);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

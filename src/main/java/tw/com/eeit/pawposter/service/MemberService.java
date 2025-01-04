@@ -44,7 +44,7 @@ public class MemberService {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			MemberDao memberDao = new MemberDao(conn);
-			memberDao.insertMember(member);
+			memberDao.createMember(member);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class MemberService {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			MemberDao memberDao = new MemberDao(conn);
-			memberDao.insertMembers(members);
+			memberDao.createMembers(members);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class MemberService {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			MemberPetLikeDao memberPetLikeDao = new MemberPetLikeDao(conn);
-			memberPetLikeDao.insertLike(memberPetLike);
+			memberPetLikeDao.createLike(memberPetLike);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -76,7 +76,7 @@ public class MemberService {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
 			MemberPetLikeDao memberPetLikeDao = new MemberPetLikeDao(conn);
-			memberPetLikeDao.insertLikes(memberPetLikes);
+			memberPetLikeDao.createLikes(memberPetLikes);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,10 +93,10 @@ public class MemberService {
 			Boolean isLiked = memberPetLikeDao.isLikeExist(memberPetLike);
 
 			if (isLiked) {
-				memberPetLikeDao.removeLike(memberPetLike);
+				memberPetLikeDao.deleteLike(memberPetLike);
 				message = "不讚";
 			} else {
-				memberPetLikeDao.insertLike(memberPetLike);
+				memberPetLikeDao.createLike(memberPetLike);
 				message = "讚";
 			}
 
