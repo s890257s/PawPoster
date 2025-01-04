@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import tw.com.eeit.pawposter.model.entity.Member;
 import tw.com.eeit.pawposter.model.entity.MemberPetLike;
 import tw.com.eeit.pawposter.model.entity.Pet;
-import tw.com.eeit.pawposter.util.DateTool;
+import tw.com.eeit.pawposter.util.CommonTool;
 
 public class MemberPetLikeDao {
 
@@ -46,8 +47,8 @@ public class MemberPetLikeDao {
 			MemberPetLike memberPetLike = new MemberPetLike();
 			memberPetLike.setLikeId(rs.getInt("like_id"));
 			memberPetLike.setCreateDate(rs.getDate("create_date"));
-			memberPetLike.setMember(rs.getInt("member_id"));
-			memberPetLike.setPet(rs.getInt("pet_id"));
+			memberPetLike.setMember(new Member(rs.getInt("member_id")));
+			memberPetLike.setPet(new Pet(rs.getInt("pet_id")));
 
 			memberPetLikes.add(memberPetLike);
 		}
@@ -114,7 +115,7 @@ public class MemberPetLikeDao {
 	public void insertLike(MemberPetLike memberPetLike) throws SQLException {
 		final String SQL = "INSERT INTO [paw_poster].[dbo].[member_pet_like]([create_date], [member_id], [pet_id]) VALUES(?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(SQL);
-		ps.setDate(1, DateTool.convertUtilToSqlDate(memberPetLike.getCreateDate()));
+		ps.setDate(1, CommonTool.convertUtilToSqlDate(memberPetLike.getCreateDate()));
 		ps.setInt(2, memberPetLike.getMember().getMemberId());
 		ps.setInt(3, memberPetLike.getPet().getPetId());
 
@@ -129,7 +130,7 @@ public class MemberPetLikeDao {
 		PreparedStatement ps = conn.prepareStatement(SQL);
 
 		for (MemberPetLike memberPetLike : memberPetLikes) {
-			ps.setDate(1, DateTool.convertUtilToSqlDate(memberPetLike.getCreateDate()));
+			ps.setDate(1, CommonTool.convertUtilToSqlDate(memberPetLike.getCreateDate()));
 			ps.setInt(2, memberPetLike.getMember().getMemberId());
 			ps.setInt(3, memberPetLike.getPet().getPetId());
 			ps.addBatch();

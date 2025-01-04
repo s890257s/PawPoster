@@ -2,12 +2,12 @@ package tw.com.eeit.pawposter.model.entity;
 
 import java.util.Date;
 
-import tw.com.eeit.pawposter.util.DateTool;
+import tw.com.eeit.pawposter.util.CommonTool;
 
 public class MemberPetLike {
 
 	private Integer likeId;
-	private Date createDate = DateTool.getDefaultDate();
+	private Date createDate = CommonTool.getDefaultDate();
 	private Member member = new Member();
 	private Pet pet = new Pet();
 
@@ -45,20 +45,12 @@ public class MemberPetLike {
 		this.member = member;
 	}
 
-	public void setMember(Integer memberId) {
-		this.member = new Member(memberId);
-	}
-
 	public Pet getPet() {
 		return pet;
 	}
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
-	}
-
-	public void setPet(Integer petId) {
-		this.pet = new Pet(petId);
 	}
 
 }

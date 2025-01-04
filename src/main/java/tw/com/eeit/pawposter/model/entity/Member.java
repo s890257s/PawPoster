@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import tw.com.eeit.pawposter.util.DateTool;
+import tw.com.eeit.pawposter.util.CommonTool;
 
 public class Member {
 
@@ -13,7 +13,7 @@ public class Member {
 	private String password;
 	private Boolean enabled;
 	private String memberName;
-	private Date memberBirthDate = DateTool.getDefaultDate();
+	private Date memberBirthDate = CommonTool.getDefaultDate();
 	private String memberPhoto;
 	private List<Pet> pets = new ArrayList<>();
 
@@ -21,7 +21,6 @@ public class Member {
 	}
 
 	public Member(Integer memberId) {
-		super();
 		this.memberId = memberId;
 	}
 
@@ -96,5 +95,4 @@ public class Member {
 				+ ", pets=" + pets + "]";
 	}
 
-	
 }

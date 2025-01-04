@@ -9,7 +9,7 @@ import java.util.List;
 
 import tw.com.eeit.pawposter.model.entity.Member;
 import tw.com.eeit.pawposter.model.entity.Pet;
-import tw.com.eeit.pawposter.util.DateTool;
+import tw.com.eeit.pawposter.util.CommonTool;
 
 /**
  * 只要是跟 Member 資料表有關的任何互動，都要寫在此 Dao 之中。<br>
@@ -263,7 +263,7 @@ public class MemberDao {
 		ps.setString(2, member.getPassword());
 		ps.setBoolean(3, member.getEnabled());
 		ps.setString(4, member.getMemberName());
-		ps.setDate(5, DateTool.convertUtilToSqlDate(member.getMemberBirthDate()));
+		ps.setDate(5, CommonTool.convertUtilToSqlDate(member.getMemberBirthDate()));
 		ps.setString(6, member.getMemberPhoto());
 
 		ps.execute();
@@ -290,7 +290,7 @@ public class MemberDao {
 			ps.setString(2, member.getPassword());
 			ps.setBoolean(3, member.getEnabled());
 			ps.setString(4, member.getMemberName());
-			ps.setDate(5, DateTool.convertUtilToSqlDate(member.getMemberBirthDate()));
+			ps.setDate(5, CommonTool.convertUtilToSqlDate(member.getMemberBirthDate()));
 			ps.setString(6, member.getMemberPhoto());
 			ps.addBatch();
 		}

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 
-import tw.com.eeit.pawposter.model.dao.MemberDao;
 import tw.com.eeit.pawposter.model.dao.MemberPetLikeDao;
 import tw.com.eeit.pawposter.model.dao.PetDao;
 import tw.com.eeit.pawposter.model.dto.PetDto;
