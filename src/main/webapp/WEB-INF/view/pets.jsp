@@ -44,8 +44,8 @@
 
 									<c:if test="${loggedInMember!=null }">
 										<!-- 是否按讚 -->
-										<button type="button"
-											class="btn btn-sm btn-outline-secondary m-2">
+										<button type="button" data-pet_id="${pet.petId }"
+											class="btn btn-sm btn-outline-secondary m-2 likeBtn">
 											<c:if test="${!pet.isLiked }">
 												<i class="fa-regular fa-thumbs-up"></i>
 											</c:if>
@@ -73,5 +73,17 @@
 	<!-- footer -->
 	<jsp:include page="${component}/footer.jsp" />
 
+	<script>
+		const likeBtns = document.querySelectorAll(".likeBtn");
+		likeBtns.forEach((btn)=>{
+			btn.addEventListener("click",(e)=>{
+				fetch("${root}/ToggleLike.do?petId="+e.target.dataset.pet_id)
+				.then(rs=>rs.text())
+				.then(message=>{
+					location.reload()
+				})
+			})
+		})
+	</script>
 </body>
 </html>
